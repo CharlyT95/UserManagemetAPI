@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using UserManagementAPI.Data;
+using UserManagementAPI.Middlewares;
+using UserManagementAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,33 @@ builder.Services.AddDbContext<UserManagementDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<PermisoService>();
+builder.Services.AddScoped<RolService>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var errores = context.ModelState
+            .Where(x => x.Value.Errors.Count > 0)
+            .SelectMany(x => x.Value.Errors)
+            .Select(x => x.ErrorMessage)
+            .ToList();
+
+        var response = new
+        {
+            success = false,
+            message = string.Join(", ", errores),
+            data = (object)null
+        };
+
+        return new BadRequestObjectResult(response);
+    };
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,6 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
