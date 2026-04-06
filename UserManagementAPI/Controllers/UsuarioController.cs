@@ -1,8 +1,8 @@
 ﻿
+using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Helpers;
-using UserManagementAPI.Services;
 
 namespace UserManagementAPI.Controllers
 {

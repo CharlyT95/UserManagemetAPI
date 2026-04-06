@@ -9,6 +9,7 @@ namespace UserManagementAPI.Configurations
         public void Configure(EntityTypeBuilder<Rol> builder)
         {
             builder.HasKey(x => x.IdRol);
+            builder.HasIndex(x => x.Nombre).IsUnique();
         }
     }
 }

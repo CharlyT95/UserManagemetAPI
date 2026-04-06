@@ -9,6 +9,9 @@ namespace UserManagementAPI.Configurations
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
             builder.HasKey(x => x.IdUsuario);
+            builder.HasIndex(x => x.CorreoElectronico).IsUnique();
+            builder.HasIndex(x => x.UsuarioLogin).IsUnique();
+
         }
     }
 }

@@ -273,3 +273,6 @@ C:\Users\CarlosTorres\source\repos\UserManagementAPI\UserManagemetAPI\UserManage
 C:\Users\CarlosTorres\source\repos\UserManagementAPI\UserManagemetAPI\UserManagementAPI\obj\Debug\net8.0\UserManagementAPI.pdb
 C:\Users\CarlosTorres\source\repos\UserManagementAPI\UserManagemetAPI\UserManagementAPI\obj\Debug\net8.0\UserManagementAPI.genruntimeconfig.cache
 C:\Users\CarlosTorres\source\repos\UserManagementAPI\UserManagemetAPI\UserManagementAPI\obj\Debug\net8.0\ref\UserManagementAPI.dll
+C:\Users\charl\OneDrive\Documents\Visual Studio 2022\UserManagementAPI\UserManagementAPI\UserManagementAPI\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\charl\OneDrive\Documents\Visual Studio 2022\UserManagementAPI\UserManagementAPI\UserManagementAPI\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\charl\OneDrive\Documents\Visual Studio 2022\UserManagementAPI\UserManagementAPI\UserManagementAPI\obj\Debug\net8.0\UserManagementAPI.sourcelink.json

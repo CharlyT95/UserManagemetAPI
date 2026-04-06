@@ -1,32 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\models\\usuariocredencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\models\\usuariocredencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\controllers\\rolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\controllers\\rolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\controllers\\permisocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\controllers\\permisocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\dtos\\rol\\createroldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\dtos\\rol\\createroldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\services\\permisoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\services\\permisoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\services\\rolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\services\\rolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -34,89 +9,51 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioCredencial.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "RelativeToolTip": "UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T21:42:37.155Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PermisoService.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\PermisoService.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\PermisoService.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\PermisoService.cs",
-              "RelativeToolTip": "UserManagementAPI\\Services\\PermisoService.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T20:58:46.058Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateRolDTO.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "RelativeToolTip": "UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T20:48:39.387Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PermisoController.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\PermisoController.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Controllers\\PermisoController.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\PermisoController.cs",
-              "RelativeToolTip": "UserManagementAPI\\Controllers\\PermisoController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAwwC0AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T18:14:52.122Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RolController.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\RolController.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Controllers\\RolController.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\RolController.cs",
-              "RelativeToolTip": "UserManagementAPI\\Controllers\\RolController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAqwCMAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T18:09:13.794Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RolService.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\RolService.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\RolService.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\RolService.cs",
-              "RelativeToolTip": "UserManagementAPI\\Services\\RolService.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAqwCYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T15:44:02.529Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             }
           ]
         }

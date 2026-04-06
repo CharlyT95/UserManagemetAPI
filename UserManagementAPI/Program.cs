@@ -1,8 +1,9 @@
+using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
+using Aduanas.Aci.Usuarios.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
 using UserManagementAPI.Middlewares;
-using UserManagementAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<PermisoService>();
 builder.Services.AddScoped<RolService>();
+builder.Services.AddScoped<UsuarioRolService>();
+builder.Services.AddScoped<RolPermisoService>();
+builder.Services.AddScoped<UsuarioCredencialService>();
+
+builder.Services.AddScoped<IPasswordService, PasswordService>();
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

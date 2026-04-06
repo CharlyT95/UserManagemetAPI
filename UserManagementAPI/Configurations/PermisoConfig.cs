@@ -10,9 +10,11 @@ namespace UserManagementAPI.Configurations
         {
             builder.HasKey(x => x.IdPermiso);
 
-            //builder.Property(x => x.CodigoPermiso)
-            //       .IsRequired()
-            //       .HasMaxLength(50);
+            builder.HasIndex(x => x.CodigoPermiso).IsUnique();
+
+            builder.Property(x => x.CodigoPermiso)
+                   .IsRequired()
+                   .HasMaxLength(50);
         }
     }
 }
