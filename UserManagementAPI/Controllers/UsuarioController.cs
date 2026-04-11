@@ -1,4 +1,5 @@
 ﻿
+using Aduanas.Aci.Usuarios.Api.DTOs;
 using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.DTOs.Usuario;
@@ -54,10 +55,10 @@ namespace UserManagementAPI.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPut("DesactivarUsuario")]
-        public async Task<IActionResult> DesactivarUsuario([FromBody] DeactivateUsuarioDTO usuario)
+        [HttpPatch("CambiarEstado")]
+        public async Task<IActionResult> CambiarEstadoUsuario(int id,[FromBody] CambiarEstadoDTO cambio)
         {
-            var desactivar = await _userService.DeactivateeUsuarioAsync(usuario);
+            var desactivar = await _userService.CambiarEstadoUsuario(id,cambio.activo);
             return Ok(ResponseHelper.Success(desactivar));
         }
 

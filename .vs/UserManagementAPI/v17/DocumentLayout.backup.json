@@ -1,30 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\",
+  "WorkspaceRootPath": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\models\\usuariocredencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\models\\usuariocredencial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\carlostorres\\documents\\projects\\apiusuarios\\usermanagemetapi\\usermanagementapi\\services\\implementatios\\usuariocredencialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\services\\implementatios\\usuariocredencialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\controllers\\rolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\controllers\\rolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\carlostorres\\documents\\projects\\apiusuarios\\usermanagemetapi\\usermanagementapi\\mappings\\usuariocredencialprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\mappings\\usuariocredencialprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\controllers\\permisocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\controllers\\permisocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\dtos\\rol\\createroldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\dtos\\rol\\createroldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\services\\permisoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\services\\permisoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|c:\\users\\carlostorres\\source\\repos\\usermanagementapi\\usermanagemetapi\\usermanagementapi\\services\\rolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\UserManagementAPI.csproj|solutionrelative:usermanagementapi\\services\\rolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\carlostorres\\documents\\projects\\apiusuarios\\usermanagemetapi\\usermanagementapi\\controllers\\usuariocredencialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\controllers\\usuariocredencialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,79 +31,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsuarioCredencial.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "RelativeToolTip": "UserManagementAPI\\Models\\UsuarioCredencial.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Title": "UsuarioCredencialService.cs",
+              "DocumentMoniker": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "ToolTip": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "RelativeToolTip": "UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAcwJUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T21:42:37.155Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PermisoService.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\PermisoService.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\PermisoService.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\PermisoService.cs",
-              "RelativeToolTip": "UserManagementAPI\\Services\\PermisoService.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T20:58:46.058Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateRolDTO.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "RelativeToolTip": "UserManagementAPI\\DTOs\\Rol\\CreateRolDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T20:48:39.387Z",
+              "WhenOpened": "2026-04-10T22:58:53.715Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PermisoController.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\PermisoController.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Controllers\\PermisoController.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\PermisoController.cs",
-              "RelativeToolTip": "UserManagementAPI\\Controllers\\PermisoController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAwwC0AAAAsAAAAAAAAAA==",
+              "Title": "UsuarioCredencialController.cs",
+              "DocumentMoniker": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Controllers\\UsuarioCredencialController.cs",
+              "RelativeDocumentMoniker": "UserManagementAPI\\Controllers\\UsuarioCredencialController.cs",
+              "ToolTip": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Controllers\\UsuarioCredencialController.cs",
+              "RelativeToolTip": "UserManagementAPI\\Controllers\\UsuarioCredencialController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T18:14:52.122Z",
+              "WhenOpened": "2026-04-10T22:58:37.348Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RolController.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\RolController.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Controllers\\RolController.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Controllers\\RolController.cs",
-              "RelativeToolTip": "UserManagementAPI\\Controllers\\RolController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAqwCMAAAARAAAAAAAAAA==",
+              "Title": "UsuarioCredencialProfile.cs",
+              "DocumentMoniker": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Mappings\\UsuarioCredencialProfile.cs",
+              "RelativeDocumentMoniker": "UserManagementAPI\\Mappings\\UsuarioCredencialProfile.cs",
+              "ToolTip": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Mappings\\UsuarioCredencialProfile.cs",
+              "RelativeToolTip": "UserManagementAPI\\Mappings\\UsuarioCredencialProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T18:09:13.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RolService.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\RolService.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\RolService.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\source\\repos\\UserManagementAPI\\UserManagemetAPI\\UserManagementAPI\\Services\\RolService.cs",
-              "RelativeToolTip": "UserManagementAPI\\Services\\RolService.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAqwCYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T15:44:02.529Z",
+              "WhenOpened": "2026-04-10T22:41:29.247Z",
               "EditorCaption": ""
             }
           ]

@@ -1,4 +1,5 @@
 ﻿using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
+using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -65,20 +66,28 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         }
 
-        public async Task<DeactivatePermisoDTO> DeactivatePermisoAsync(DeactivatePermisoDTO permiso)
+        public async Task<bool> DeactivatePermisoAsync(int idpermiso, bool activo)
         {
-            var data = await _context.Permiso.FirstOrDefaultAsync(p => p.IdPermiso == permiso.IdPermiso);
+            if (idpermiso <= 0)
+                throw new Exception(UsuarioRolErrors.UsuarioNull);
+
+            var data = await _context.Permiso
+                .FirstOrDefaultAsync(ur => ur.IdPermiso == idpermiso);
+
             if (data == null)
-                throw new Exception("Permiso no encontrado");
-            _mapper.Map(permiso, data);
+                throw new Exception(PermisoErrors.PermisoNoEncontrado);
+
+            if (!data.Activo && activo == false)
+                throw new Exception(PermisoErrors.PermisoInactivoBoolInactivo);
+
+            if (data.Activo && activo == true)
+                throw new Exception(PermisoErrors.PermisoActivoBoolActivo);
 
             //Auditoria
-            data.Activo = false;
+            data.Activo = activo;
 
-            _context.Permiso.Update(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<DeactivatePermisoDTO>(data);
-
+            return true;
         }
     }
 }

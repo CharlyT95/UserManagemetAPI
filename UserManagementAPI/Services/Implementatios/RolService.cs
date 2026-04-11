@@ -1,4 +1,5 @@
 ﻿using Aduanas.Aci.Usuarios.Api.Errors.Rol;
+using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -51,26 +52,35 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         {
             var data = await _context.Rol.Where(r => r.IdRol == rol.IdRol).FirstOrDefaultAsync();
             if (data == null)
-                throw new Exception("rol no encontrado");
+                throw new Exception(RolErrors.RolNoEncontrado);
 
             _context.Rol.Add(data);
             await _context.SaveChangesAsync();
             return _mapper.Map<UpdateRolDTO>(data);
         }
 
-        public async Task<DeactivateRol> DeactivateRol(DeactivateRol rol)
+        public async Task<bool> CambiarEstadoRol(int idRol, bool activo)
         {
-            var data = await _context.Rol.Where(r => r.IdRol == rol.IdRol).FirstOrDefaultAsync();
+            if (idRol <= 0)
+                throw new Exception(RolErrors.RolNoEncontrado);
+
+            var data = await _context.Rol
+                .FirstOrDefaultAsync(ur => ur.IdRol == idRol);
+
             if (data == null)
-                throw new Exception("rol no encontrado");
+                throw new Exception(RolErrors.RolNoEncontrado);
+
+            if (!data.Activo && activo == false)
+                throw new Exception(RolErrors.RolInactivoBoolInactivo);
+
+            if (data.Activo && activo == true)
+                throw new Exception(RolErrors.RolActivoBoolActivo);
 
             //Auditoria
-            data.Activo = false;
+            data.Activo = activo;
 
-            _context.Rol.Update(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<DeactivateRol>(data);
-
+            return true;
         }
 
 

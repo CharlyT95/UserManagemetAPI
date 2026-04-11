@@ -10,15 +10,6 @@ namespace UserManagementAPI.Mappings
         {
             CreateMap<Permiso,PermisoDTO>();
             CreateMap<CreatePermisoDTO,Permiso>();
-            CreateMap<DeactivatePermisoDTO, Permiso>()
-             .ForMember(p => p.IdPermiso, opt => opt.Ignore())
-             .ForMember(p => p.CodigoPermiso, opt => opt.Ignore())
-             .ForMember(p => p.Descripcion, opt => opt.Ignore())
-             .ForMember(p => p.Modulo, opt => opt.Ignore())
-             .ForMember(p => p.FechaCreacion, opt => opt.Ignore())
-             .ForMember(p => p.UsuarioCreacion, opt => opt.Ignore())
-             .ForMember(p => p.UsuarioModificacion, opt => opt.Ignore())
-             .ForMember(p => p.FechaModificacion, opt => opt.Ignore());
             CreateMap<UpdatePermisoDTO, Permiso>()
                 .ForMember(p => p.IdPermiso, opt => opt.Ignore())
                 .ForMember(p => p.UsuarioCreacion, opt => opt.Ignore())

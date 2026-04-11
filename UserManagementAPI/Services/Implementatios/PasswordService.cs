@@ -6,26 +6,24 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
     public class PasswordService : IPasswordService
     {
-        public void CreatePassword(string password, out string hash, out string salt) 
+
+        public void CreatePassword(string password, out byte[] hash, out byte[] salt) 
         {
             using var hashmac = new HMACSHA512();
             var saltBytes = hashmac.Key;
             var hashBytes = hashmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-            salt = Convert.ToBase64String(saltBytes);
-            hash = Convert.ToBase64String(hashBytes);
+            salt = hashmac.Key;
+            hash = hashmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
         }
 
-        public bool VerifyPassword(string password, string passwordHash, string passwordSalt)
+        public bool VerifyPassword(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            var saltBytes = Convert.FromBase64String(passwordSalt);
+            using var hashmac = new HMACSHA512(passwordSalt);
+            var computedHash = hashmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-            using var hashmac = new HMACSHA512(saltBytes);
-
-            var transHash = hashmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-            return CryptographicOperations.FixedTimeEquals(Convert.FromBase64String(passwordHash), transHash);
+            return CryptographicOperations.FixedTimeEquals(passwordHash, computedHash);
         }
     }
 }

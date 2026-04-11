@@ -1,4 +1,5 @@
-﻿using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
+﻿using Aduanas.Aci.Usuarios.Api.Errors.Rol;
+using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -72,22 +73,28 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             return _mapper.Map<UpdateUsuarioDTO>(data);
         }
 
-        public async Task<DeactivateUsuarioDTO> DeactivateeUsuarioAsync(DeactivateUsuarioDTO usuario)
+        public async Task<bool> CambiarEstadoUsuario(int idUsuario, bool activo)
         {
-            var data = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario == usuario.IdUsuario);
+            if (idUsuario <= 0)
+                throw new Exception(UsuarioErrors.UsuarioNoEncontrado);
 
-            if (usuario == null)
-                throw new Exception("Usuario no encontrado");
+            var data = await _context.Usuario
+                .FirstOrDefaultAsync(ur => ur.IdUsuario == idUsuario);
 
-            _mapper.Map(usuario, data);
+            if (data == null)
+                throw new Exception(UsuarioErrors.UsuarioNoEncontrado);
+
+            if (!data.Activo && activo == false)
+                throw new Exception(UsuarioErrors.UsuarioInactivoBoolInactivo);
+
+            if (data.Activo && activo == true)
+                throw new Exception(UsuarioErrors.UsuarioActivoBoolActivo);
 
             //Auditoria
-            data.Activo = false;
+            data.Activo = activo;
 
-            _context.Usuario.Update(data);
             await _context.SaveChangesAsync();
-
-            return _mapper.Map<DeactivateUsuarioDTO>(data);
+            return true;
         }
     }
 }

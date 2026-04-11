@@ -17,6 +17,27 @@
   },
   {
     "ContainingType": "UserManagementAPI.Controllers.PermisoController",
+    "Method": "DesactivarPermiso",
+    "RelativePath": "api/Permiso/CambiarEstado",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "cambio",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.CambiarEstadoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserManagementAPI.Controllers.PermisoController",
     "Method": "CreatePermiso",
     "RelativePath": "api/Permiso/CrearPermiso",
     "HttpMethod": "POST",
@@ -26,22 +47,6 @@
       {
         "Name": "permiso",
         "Type": "UserManagementAPI.DTOs.Permiso.CreatePermisoDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserManagementAPI.Controllers.PermisoController",
-    "Method": "DesactivarPermiso",
-    "RelativePath": "api/Permiso/DesactivarPermiso",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "permiso",
-        "Type": "UserManagementAPI.DTOs.Permiso.DeactivatePermisoDTO",
         "IsRequired": true
       }
     ],
@@ -91,6 +96,27 @@
   },
   {
     "ContainingType": "UserManagementAPI.Controllers.RolController",
+    "Method": "CambiarEstadoRol",
+    "RelativePath": "api/Rol/CambiarEstado",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "cambio",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.CambiarEstadoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserManagementAPI.Controllers.RolController",
     "Method": "CreateRol",
     "RelativePath": "api/Rol/CrearRol",
     "HttpMethod": "POST",
@@ -100,22 +126,6 @@
       {
         "Name": "rol",
         "Type": "UserManagementAPI.DTOs.Rol.CreateRolDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserManagementAPI.Controllers.RolController",
-    "Method": "DeactivateRol",
-    "RelativePath": "api/Rol/DesactivarRol",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "rol",
-        "Type": "UserManagementAPI.DTOs.Rol.DeactivateRol",
         "IsRequired": true
       }
     ],
@@ -165,6 +175,27 @@
   },
   {
     "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
+    "Method": "CambiarEstadoUsuario",
+    "RelativePath": "api/Usuario/CambiarEstado",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "cambio",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.CambiarEstadoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
     "Method": "CreateUsuario",
     "RelativePath": "api/Usuario/CrearUsuario",
     "HttpMethod": "POST",
@@ -174,22 +205,6 @@
       {
         "Name": "usuario",
         "Type": "UserManagementAPI.DTOs.Usuario.CreateUsuarioDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
-    "Method": "DesactivarUsuario",
-    "RelativePath": "api/Usuario/DesactivarUsuario",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "usuario",
-        "Type": "UserManagementAPI.DTOs.Usuario.DeactivateUsuarioDTO",
         "IsRequired": true
       }
     ],
@@ -215,6 +230,107 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioCredencialController",
+    "Method": "CambioPassword",
+    "RelativePath": "api/UsuarioCredencial/CambiarPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "password",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.UsuarioCredencial.CambiarPasswordDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioCredencialController",
+    "Method": "Credenciales",
+    "RelativePath": "api/UsuarioCredencial/Credenciales",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "credencial",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.UsuarioCredencial.CreateUsuarioCredencialDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioCredencialController",
+    "Method": "Login",
+    "RelativePath": "api/UsuarioCredencial/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.UsuarioCredencial.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioRolController",
+    "Method": "AsignarRolUsuario",
+    "RelativePath": "api/UsuarioRol/AsignarRolUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioRol",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.UsuarioRol.CreateUsuarioRolDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioRolController",
+    "Method": "DeactivateRolToUsuario",
+    "RelativePath": "api/UsuarioRol/CambiarEstado",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuarioRol",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "estado",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.CambiarEstadoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioRolController",
+    "Method": "GetRolesPorUsuario",
+    "RelativePath": "api/UsuarioRol/UsuarioRol",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
         "Type": "System.Int32",
         "IsRequired": false
       }

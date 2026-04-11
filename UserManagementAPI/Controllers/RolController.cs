@@ -1,4 +1,5 @@
-﻿using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
+﻿using Aduanas.Aci.Usuarios.Api.DTOs;
+using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.DTOs.Rol;
 using UserManagementAPI.Helpers;
@@ -53,10 +54,10 @@ namespace UserManagementAPI.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPut("DesactivarRol")]
-        public async Task<IActionResult> DeactivateRol([FromBody] DeactivateRol rol)
+        [HttpPatch("CambiarEstado")]
+        public async Task<IActionResult> CambiarEstadoRol(int id, [FromBody] CambiarEstadoDTO cambio)
         {
-            var data = await _rolService.DeactivateRol(rol);
+            var data = await _rolService.CambiarEstadoRol(id, cambio.activo);
             return Ok(ResponseHelper.Success(data));
         }
 

@@ -18,16 +18,13 @@ builder.Services.AddDbContext<UserManagementDbContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<PermisoService>();
 builder.Services.AddScoped<RolService>();
 builder.Services.AddScoped<UsuarioRolService>();
 builder.Services.AddScoped<RolPermisoService>();
 builder.Services.AddScoped<UsuarioCredencialService>();
-
-builder.Services.AddScoped<IPasswordService, PasswordService>();
-
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

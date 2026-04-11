@@ -9,6 +9,8 @@ namespace UserManagementAPI.Configurations
         public void Configure(EntityTypeBuilder<UsuarioCredencial> builder)
         {
             builder.HasKey(x => x.IdUsuarioCredencial);
+
+            builder.HasOne(e => e.Usuario).WithMany().HasForeignKey(e => e.IdUsuario);
         }
     }
 }

@@ -8,7 +8,17 @@ namespace UserManagementAPI.Configurations
     {
         public void Configure(EntityTypeBuilder<UsuarioRol> builder)
         {
-            builder.HasKey(x => x.IdUsuario);
+            builder.HasKey(x => x.IdUsuarioRol);
+
+            builder.HasOne(e => e.Usuario)
+                .WithMany()
+                .HasForeignKey(e => e.IdUsuario)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(e => e.Rol)
+                .WithMany()
+                .HasForeignKey(e => e.IdRol)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

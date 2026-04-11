@@ -15,12 +15,6 @@ namespace Aduanas.Aci.Usuarios.Api.Mappings
                 .ForMember(p => p.FechaCreacion, opt => opt.Ignore())
                 .ForMember(p => p.UsuarioCreacion, opt => opt.Ignore())
                 .ForMember(p => p.Activo, opt => opt.Ignore());
-            CreateMap<DeactivateRolPermisoDTO, RolPermiso>()
-                .ForMember(p => p.IdRolPermiso, opt => opt.Ignore())
-                .ForMember(p => p.FechaCreacion, opt => opt.Ignore())
-                .ForMember(p => p.UsuarioCreacion, opt => opt.Ignore())
-                .ForMember(p => p.FechaModificacion, opt => opt.Ignore())
-                .ForMember(p => p.UsuarioModificacion, opt => opt.Ignore());
         }
     }
 }

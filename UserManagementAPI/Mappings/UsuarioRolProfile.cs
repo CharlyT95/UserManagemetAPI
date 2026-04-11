@@ -8,19 +8,14 @@ namespace Aduanas.Aci.Usuarios.Api.Mappings
     {
         public UsuarioRolProfile()
         {
-            CreateMap<UsuarioRol, UsuarioRolDTO>();
-            CreateMap<CreateUsuarioRolDTO, UsuarioRol>();
+            CreateMap<UsuarioRol, UsuarioRolDTO>()
+                .ForMember(p => p.Rol,opt => opt.MapFrom(src => src.Rol.Nombre)); ;
+            CreateMap<CreateUsuarioRolDTO, UsuarioRol>()
+                .ForMember(p => p.IdUsuarioRol, opt => opt.Ignore())
+                .ReverseMap();
             CreateMap<UpdateUsuarioRolDTO, UsuarioRol>()
-                .ForMember(p => p.IdUsuarioRol, opt => opt.Ignore())
-                .ForMember(p => p.FechaCreacion, opt => opt.Ignore())
-                .ForMember(p => p.UsuarioCreacion, opt => opt.Ignore())
-                .ForMember(p => p.Activo, opt => opt.Ignore());
-            CreateMap<DeactivateUsuarioRolDTO, UsuarioRol>()
-                .ForMember(p => p.IdUsuarioRol, opt => opt.Ignore())
-                .ForMember(p => p.FechaCreacion, opt => opt.Ignore())
-                .ForMember(p => p.UsuarioCreacion, opt => opt.Ignore())
-                .ForMember(p => p.FechaModificacion, opt => opt.Ignore())
-                .ForMember(p => p.UsuarioModificacion, opt => opt.Ignore());
+                  .ForMember(dest => dest.IdUsuarioRol, opt => opt.Ignore())
+                  .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

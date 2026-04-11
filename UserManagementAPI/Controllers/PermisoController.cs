@@ -1,7 +1,7 @@
-﻿using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
+﻿using Aduanas.Aci.Usuarios.Api.DTOs;
+using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.DTOs.Permiso;
-using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Helpers;
 
 namespace UserManagementAPI.Controllers
@@ -53,10 +53,10 @@ namespace UserManagementAPI.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPut("DesactivarPermiso")]
-        public async Task<IActionResult> DesactivarPermiso([FromBody] DeactivatePermisoDTO permiso)
+        [HttpPatch("CambiarEstado")]
+        public async Task<IActionResult> DesactivarPermiso(int id, [FromBody] CambiarEstadoDTO cambio)
         {
-            var desactivar = await _permisoService.DeactivatePermisoAsync(permiso);
+            var desactivar = await _permisoService.DeactivatePermisoAsync(id,cambio.activo);
             return Ok(ResponseHelper.Success(desactivar));
         }
 

@@ -13,7 +13,7 @@ namespace UserManagementAPI.Data
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Permiso> Permiso { get; set; }
         public DbSet<RolPermiso> RolPermiso { get; set; }
-        public DbSet<UsuarioCredencial> UsuariosCredencial { get; set; }
+        public DbSet<UsuarioCredencial> UsuarioCredencial { get; set; }
         public DbSet<UsuarioRol> UsuarioRol {  get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

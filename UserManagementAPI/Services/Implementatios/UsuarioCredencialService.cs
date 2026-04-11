@@ -2,11 +2,11 @@
 using Aduanas.Aci.Usuarios.Api.Errors.UsuarioCredencial;
 using Aduanas.Aci.Usuarios.Api.Services.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
-using UserManagementAPI.DTOs.Permiso;
-using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
@@ -23,64 +23,74 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _passwordService = passwordService;
         }
 
-        public async Task<CreateUsuarioCredencialDTO> CreateCredeciales(CreateUsuarioCredencialDTO uc)
+        public async Task<bool> CreateCredeciales(CreateUsuarioCredencialDTO uc)
         {
             var data = _mapper.Map<UsuarioCredencial>(uc);
             //Validar que el usuario exista
-            var validarUsuario = await _context.UsuariosCredencial.AnyAsync(u => u.IdUsuario == uc.IdUSuario);
+            var validarUsuario = await _context.Usuario.AnyAsync(u => u.IdUsuario == uc.IdUsuario);
             if (!validarUsuario)
                 throw new Exception(UsuarioCredencialErrors.UsuarioNoExistente);
 
             //Validar que el usuario ya posee credenciales
-            var validarCredecialesExistentes = await _context.UsuariosCredencial.AnyAsync(ucl => ucl.IdUsuario == uc.IdUSuario);
+            var validarCredecialesExistentes = await _context.UsuarioCredencial.AnyAsync(ucl => ucl.IdUsuario == uc.IdUsuario);
             if (validarCredecialesExistentes)
                 throw new Exception(UsuarioCredencialErrors.CredencialExistente);
 
             //Almacenar contraseña utilizando HMACSHA512
-            _passwordService.CreatePassword(uc.Password, out string hash, out string salt);
+            _passwordService.CreatePassword(uc.Password, out byte[] hash, out byte[] salt);
 
             data.PasswordHash = hash;
             data.PasswordSalt = salt;
             data.Iteraciones = 1000;
-            data.FechaUltimoCambios = DateTime.Now;
+            data.FechaUltimoCambio = DateTime.Now;
             data.IntentosFallidos = 0;
             data.BloqueoTemporal = false;
 
-            _context.UsuariosCredencial.Add(data);
+            _context.UsuarioCredencial.Add(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<CreateUsuarioCredencialDTO>(data);
+            // return _mapper.Map<CreateUsuarioCredencialDTO>(data);
+            return true;
 
         }
 
-        public async Task<CambiarPasswordDTO> ChangePassword(CambiarPasswordDTO passwordDTO)
+        public async Task<bool> ChangePassword(CambiarPasswordDTO passwordDTO)
         {
-            var data = _mapper.Map<UsuarioCredencial>(passwordDTO);
+            var usuario = await _context.UsuarioCredencial
+                .FirstOrDefaultAsync(u => u.IdUsuario == passwordDTO.IdUsuario);
 
-            //Validar usuario
-            var validarUsuario = await _context.UsuariosCredencial.FirstOrDefaultAsync(u => u.IdUsuario == passwordDTO.IdUsuario);
-            if (validarUsuario == null)
+            if (usuario == null)
                 throw new Exception(UsuarioCredencialErrors.UsuarioNoExistente);
 
-            //Validar contraseña actual
-            var validarPasswordActual = _passwordService.VerifyPassword(passwordDTO.PasswordActual, validarUsuario.PasswordHash, validarUsuario.PasswordSalt);
-            if (!validarPasswordActual)
+            // Validar contraseña actual
+            var esValido = _passwordService.VerifyPassword(
+                passwordDTO.PasswordActual,
+                usuario.PasswordHash,
+                usuario.PasswordSalt
+            );
+
+            if (!esValido)
                 throw new Exception(UsuarioCredencialErrors.PasswordIncorrecto);
 
-            _passwordService.CreatePassword(passwordDTO.PasswordNueva, out string hash, out string salt);
+            // Crear nuevo hash
+            _passwordService.CreatePassword(
+                passwordDTO.PasswordNueva,
+                out byte[] hash,
+                out byte[] salt
+            );
 
-            data.PasswordHash = hash;
-            data.PasswordSalt = salt;
+            usuario.PasswordHash = hash;
+            usuario.PasswordSalt = salt;
 
             await _context.SaveChangesAsync();
-            return _mapper.Map<CambiarPasswordDTO>(data);
 
+            return true;
         }
 
         public async Task<DesbloqueoUsuarioDTO> UnlockUsuario(DesbloqueoUsuarioDTO usuarioDTO)
         {
             var data = _mapper.Map<UsuarioCredencial>(usuarioDTO);
             //Validar usuario
-            var validarUsuario = await _context.UsuariosCredencial.FirstOrDefaultAsync(u => u.IdUsuario == usuarioDTO.IdUsuario);
+            var validarUsuario = await _context.UsuarioCredencial.FirstOrDefaultAsync(u => u.IdUsuario == usuarioDTO.IdUsuario);
             if (validarUsuario == null)
                 throw new Exception(UsuarioCredencialErrors.UsuarioNoExistente);
 
@@ -89,34 +99,64 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             return _mapper.Map<DesbloqueoUsuarioDTO>(data);
         }
 
-        public async Task<bool> Login(LoginDTO login)
+        public async Task<LoginResponseDTO> Login(LoginDTO login)
         {
-            var data = _mapper.Map<UsuarioCredencial>(login);
+            var usuarioData = await (
+                from u in _context.Usuario
+                join c in _context.UsuarioCredencial
+                    on u.IdUsuario equals c.IdUsuario
+                where u.UsuarioLogin == login.UsuarioLogin
+                select new
+                {
+                    Usuario = u,
+                    Credencial = c
+                }
+            ).FirstOrDefaultAsync();
 
-            //Validar usuario
-            var selectUsuario = _context.Usuario.Where(u => u.UsuarioLogin == login.UsuarioLogin).FirstOrDefaultAsync();
-            if (selectUsuario == null)
-                throw new Exception(UsuarioCredencialErrors.UsuarioNoExistente);
+            if (usuarioData == null)
+                throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
 
-            var validarUsuarioLogin = await _context.UsuariosCredencial.FirstOrDefaultAsync(credencial => credencial.IdUsuario == selectUsuario.Result.IdUsuario);
-            if (validarUsuarioLogin.BloqueoTemporal == true)
+            var usuario = usuarioData.Usuario;
+            var credencial = usuarioData.Credencial;
+
+            if (credencial.BloqueoTemporal)
                 throw new Exception(UsuarioCredencialErrors.Bloqueo);
 
-            var validarLogin = _passwordService.VerifyPassword(login.Password, validarUsuarioLogin.PasswordHash, validarUsuarioLogin.PasswordSalt);
-            if (!validarLogin)
+            //Validar password
+            var loginValido = _passwordService.VerifyPassword(
+                login.Password,
+                credencial.PasswordHash,
+                credencial.PasswordSalt
+            );
+
+            if (!loginValido)
             {
-                validarUsuarioLogin.IntentosFallidos++;
-                if(validarUsuarioLogin.IntentosFallidos > 3)
-                    validarUsuarioLogin.BloqueoTemporal = true;
+                credencial.IntentosFallidos++;
+
+                //bloquear si llega a 5 intentos
+                if (credencial.IntentosFallidos >= 5)
+                    credencial.BloqueoTemporal = true;
 
                 await _context.SaveChangesAsync();
-                throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
+
+                throw new Exception(UsuarioCredencialErrors.BloqueoAutomatico);
             }
 
-            return true;
+            // reset a intentos fallidos
+            if (credencial.IntentosFallidos > 0)
+            {
+                credencial.IntentosFallidos = 0;
+                await _context.SaveChangesAsync();
+            }
 
-
-
+            return new LoginResponseDTO
+            {
+                Nombres = usuario.Nombres,
+                Apellidos = usuario.Apellidos,
+                UsuarioLogin = usuario.UsuarioLogin
+            };
         }
     }
 }
+
+//Tanto Has como Salt pasar a varbinary

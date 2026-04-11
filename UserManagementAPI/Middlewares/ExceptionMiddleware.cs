@@ -24,7 +24,7 @@ namespace UserManagementAPI.Middlewares
                 {
                     Success = false,
                     Data = null,
-                    Message = ex.Message
+                    Message = ex.InnerException?.Message ?? ex.Message
                 };
 
                 await context.Response.WriteAsJsonAsync(response);

@@ -8,12 +8,10 @@ namespace Aduanas.Aci.Usuarios.Api.Mappings
     {
         public UsuarioCredencialProfile()
         {
-            CreateMap<CreateUsuarioCredencialDTO,UsuarioCredencial>();
-            CreateMap<CambiarPasswordDTO,UsuarioCredencial>();
-            CreateMap<DesbloqueoUsuarioDTO,UsuarioCredencial>();
+            CreateMap<UsuarioCredencial,CreateUsuarioCredencialDTO>().ReverseMap();
+          //  CreateMap<UsuarioCredencial,CambiarPasswordDTO>().ReverseMap();
             CreateMap<DesbloqueoUsuarioDTO,UsuarioCredencial>();
             CreateMap<LoginDTO,UsuarioCredencial>();
-            CreateMap<UsuarioCredencialResponseDTO,UsuarioCredencial>();
         }
     }
 }
