@@ -10,7 +10,7 @@ namespace Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso
         [Required(ErrorMessage = "Es necesario el permiso a asociar")]
         public int IdPermiso { get; set; }
 
-        [Required(ErrorMessage = "Es necesario quien crea el rol")]
+        [Required(ErrorMessage = "Es necesario quien crea el rolPermiso")]
         public string UsuarioCreacion { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso
 {
-    public class UpdateRolPermiso
+    public class UpdateRolPermisoDTO
     {
         [Required(ErrorMessage = "Se encesita conocer el Id de la relación Rol-Permiso a editar")]
         public int IdRolPermiso { get; set; }

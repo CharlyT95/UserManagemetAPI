@@ -6,7 +6,7 @@ using UserManagementAPI.Helpers;
 namespace Aduanas.Aci.Usuarios.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class UsuarioCredencialController : ControllerBase
     {
 
@@ -24,7 +24,7 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPost("CambiarPassword")]
+        [HttpPost("NuevaContrasenia")]
         public async Task<IActionResult> CambioPassword([FromBody] CambiarPasswordDTO password)
         {
             var data = await _usuarioCredencialService.ChangePassword(password);

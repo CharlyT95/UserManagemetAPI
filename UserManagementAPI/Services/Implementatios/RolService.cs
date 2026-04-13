@@ -32,7 +32,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             return rol;
         }
 
-        public async Task<CreateRolDTO> CreateRol(CreateRolDTO rol)
+        public async Task<RolDTO> CreateRol(CreateRolDTO rol)
         {
             var data = _mapper.Map<Rol>(rol);
             var validarNombre = await _context.Rol.AnyAsync(r => r.Nombre == rol.Nombre);
@@ -45,10 +45,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.Rol.Add(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<CreateRolDTO>(data);
+            return _mapper.Map<RolDTO>(data);
         }
 
-        public async Task<UpdateRolDTO> UpdateRol(UpdateRolDTO rol)
+        public async Task<RolDTO> UpdateRol(UpdateRolDTO rol)
         {
             var data = await _context.Rol.Where(r => r.IdRol == rol.IdRol).FirstOrDefaultAsync();
             if (data == null)
@@ -56,7 +56,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.Rol.Add(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<UpdateRolDTO>(data);
+            return _mapper.Map<RolDTO>(data);
         }
 
         public async Task<bool> CambiarEstadoRol(int idRol, bool activo)

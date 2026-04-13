@@ -2,11 +2,9 @@
 using Aduanas.Aci.Usuarios.Api.Errors.UsuarioCredencial;
 using Aduanas.Aci.Usuarios.Api.Services.Interfaces;
 using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
 using UserManagementAPI.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
@@ -135,11 +133,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
                 //bloquear si llega a 5 intentos
                 if (credencial.IntentosFallidos >= 5)
+                {
                     credencial.BloqueoTemporal = true;
-
+                    
+                    throw new Exception(UsuarioCredencialErrors.BloqueoAutomatico);
+                }
                 await _context.SaveChangesAsync();
-
-                throw new Exception(UsuarioCredencialErrors.BloqueoAutomatico);
+                throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
             }
 
             // reset a intentos fallidos

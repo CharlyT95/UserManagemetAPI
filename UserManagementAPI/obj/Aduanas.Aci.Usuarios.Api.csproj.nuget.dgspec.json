@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj": {}
+    "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj": {
+    "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj",
+        "projectUniqueName": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj",
         "projectName": "Aduanas.Aci.Usuarios.Api",
-        "projectPath": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj",
-        "packagesPath": "C:\\Users\\CarlosTorres\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\UserManagementAPI\\obj\\",
+        "projectPath": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj",
+        "packagesPath": "C:\\Users\\charl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\CarlosTorres\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\charl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -98,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -18,7 +18,7 @@ namespace UserManagementAPI.Controllers
             _rolService = rolService;
         }
 
-        [HttpGet("ListaRoles")]
+        [HttpGet]
         public async Task<IActionResult> GetRoles()
         {
             var data = await _rolService.getRoles();
@@ -29,7 +29,7 @@ namespace UserManagementAPI.Controllers
             ));
         }
 
-        [HttpGet("RolById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> RolById(int id)
         {
             var data = await _rolService.getRolById(id);
@@ -40,21 +40,21 @@ namespace UserManagementAPI.Controllers
 
         }
 
-        [HttpPost("CrearRol")]
+        [HttpPost]
         public async Task<IActionResult> CreateRol([FromBody] CreateRolDTO rol)
         {
             var data = await _rolService.CreateRol(rol);
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPut("ActualizarRol")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRol([FromBody] UpdateRolDTO rol)
         {
             var data = await _rolService.UpdateRol(rol);
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPatch("CambiarEstado")]
+        [HttpPost("estado/{id}")]
         public async Task<IActionResult> CambiarEstadoRol(int id, [FromBody] CambiarEstadoDTO cambio)
         {
             var data = await _rolService.CambiarEstadoRol(id, cambio.activo);

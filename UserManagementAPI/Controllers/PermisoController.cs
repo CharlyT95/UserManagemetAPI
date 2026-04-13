@@ -17,7 +17,7 @@ namespace UserManagementAPI.Controllers
             _permisoService = permisoService;
         }
 
-        [HttpGet("ListaPermisos")]
+        [HttpGet]
         public async Task<IActionResult> GetPermissions()
         {
             var data = await _permisoService.GetPermisos();
@@ -29,7 +29,7 @@ namespace UserManagementAPI.Controllers
 
         }
 
-        [HttpGet("PermisoById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPermissionById(int id)
         {
             var data = await _permisoService.GetPermisoById(id);
@@ -39,21 +39,21 @@ namespace UserManagementAPI.Controllers
             ));
         }
 
-        [HttpPost("CrearPermiso")]
+        [HttpPost]
         public async Task<IActionResult> CreatePermiso([FromBody] CreatePermisoDTO permiso)
         {
             var data = await _permisoService.CreatePermisoAsync(permiso);
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPut("ActualizarPermiso")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePermiso([FromBody] UpdatePermisoDTO permiso)
         {
             var data = await _permisoService.UpdatePermiso(permiso);
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPatch("CambiarEstado")]
+        [HttpPost("estado/{id}")]
         public async Task<IActionResult> DesactivarPermiso(int id, [FromBody] CambiarEstadoDTO cambio)
         {
             var desactivar = await _permisoService.DeactivatePermisoAsync(id,cambio.activo);

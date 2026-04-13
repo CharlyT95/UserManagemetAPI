@@ -779,19 +779,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CarlosTorres\\.nuget\\packages\\": {}
+    "C:\\Users\\charl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj",
+      "projectUniqueName": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj",
       "projectName": "Aduanas.Aci.Seguridad.Api",
-      "projectPath": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj",
-      "packagesPath": "C:\\Users\\CarlosTorres\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CarlosTorres\\Documents\\Projects\\APIUsuarios\\UserManagemetAPI\\Aduanas.Aci.Seguridad.Api\\obj\\",
+      "projectPath": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj",
+      "packagesPath": "C:\\Users\\charl\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\Aduanas.Aci.Seguridad.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\CarlosTorres\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\charl\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -799,7 +799,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -855,7 +854,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

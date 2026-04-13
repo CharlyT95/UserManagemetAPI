@@ -21,7 +21,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _mapper = mapper;
         }
 
-        public async Task<CreatePermisoDTO> CreatePermisoAsync(CreatePermisoDTO permiso)
+        public async Task<PermisoDTO> CreatePermisoAsync(CreatePermisoDTO permiso)
         {
             var data = _mapper.Map<Permiso>(permiso);
             var validarCodigo = await _context.Permiso.AnyAsync(p => p.CodigoPermiso == permiso.CodigoPermiso);
@@ -34,7 +34,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.Permiso.Add(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<CreatePermisoDTO>(data);
+            return _mapper.Map<PermisoDTO>(data);
         }
 
         public async Task<List<PermisoDTO>> GetPermisos()
@@ -49,7 +49,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             return permiso;
         }
 
-        public async Task<UpdatePermisoDTO> UpdatePermiso(UpdatePermisoDTO permiso)
+        public async Task<PermisoDTO> UpdatePermiso(UpdatePermisoDTO permiso)
         {
             var data = await _context.Permiso.FirstOrDefaultAsync(p => p.IdPermiso == permiso.IdPermiso);
             if (data == null)
@@ -62,7 +62,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.Permiso.Update(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<UpdatePermisoDTO>(data);
+            return _mapper.Map<PermisoDTO>(data);
 
         }
 

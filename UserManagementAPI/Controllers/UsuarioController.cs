@@ -18,7 +18,7 @@ namespace UserManagementAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet("ListaUsuarios")]
+        [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
             var data = await _userService.GetUsuariosAsync();
@@ -30,7 +30,7 @@ namespace UserManagementAPI.Controllers
 
         }
 
-        [HttpGet("ObtenerUsuarioById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> getUserById(int id)
         {
             var data = await _userService.GetUsuarioByIdAsync(id);
@@ -40,7 +40,7 @@ namespace UserManagementAPI.Controllers
             ));
         }
 
-        [HttpPost("CrearUsuario")]
+        [HttpPost]
         public async Task<IActionResult> CreateUsuario([FromBody] CreateUsuarioDTO usuario)
         {
             var data = await _userService.CreateUserAsync(usuario);
@@ -48,14 +48,14 @@ namespace UserManagementAPI.Controllers
         }
 
 
-        [HttpPut("ActualizarUsuario")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUsuario([FromBody] UpdateUsuarioDTO usuario)
         {
             var data = await _userService.UpdateUsuarioAsync(usuario);
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPatch("CambiarEstado")]
+        [HttpPost("estado/{id}")]
         public async Task<IActionResult> CambiarEstadoUsuario(int id,[FromBody] CambiarEstadoDTO cambio)
         {
             var desactivar = await _userService.CambiarEstadoUsuario(id,cambio.activo);

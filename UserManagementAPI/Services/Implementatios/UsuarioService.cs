@@ -22,7 +22,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _mapper = mapper;
         }
 
-        public async Task<CreateUsuarioDTO> CreateUserAsync(CreateUsuarioDTO usuario)
+        public async Task<UsuarioDTO> CreateUserAsync(CreateUsuarioDTO usuario)
         {
             var data = _mapper.Map<Usuario>(usuario);
             var validarCorreo = await _context.Usuario.AnyAsync(c => c.CorreoElectronico == usuario.CorreoElectronico);
@@ -40,7 +40,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _context.Usuario.Add(data);
             await _context.SaveChangesAsync();
 
-            return _mapper.Map<CreateUsuarioDTO>(data);
+            return _mapper.Map<UsuarioDTO>(data);
         }
 
         public async Task<List<UsuarioDTO>> GetUsuariosAsync()
@@ -55,7 +55,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             return usuario;
         }
 
-        public async Task<UpdateUsuarioDTO> UpdateUsuarioAsync(UpdateUsuarioDTO usuario)
+        public async Task<UsuarioDTO> UpdateUsuarioAsync(UpdateUsuarioDTO usuario)
         {
             var data = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario == usuario.IdUsuario);
 
@@ -70,7 +70,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _context.Usuario.Update(data);
             await _context.SaveChangesAsync();
 
-            return _mapper.Map<UpdateUsuarioDTO>(data);
+            return _mapper.Map<UsuarioDTO>(data);
         }
 
         public async Task<bool> CambiarEstadoUsuario(int idUsuario, bool activo)

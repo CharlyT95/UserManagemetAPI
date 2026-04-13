@@ -10,8 +10,7 @@ namespace Aduanas.Aci.Usuarios.Api.Mappings
         {
             CreateMap<RolPermiso, RolPermisoDTO>();
             CreateMap<CreateRolPermisoDTO, RolPermiso>();
-            CreateMap<UpdateRolPermiso, RolPermiso>()
-                .ForMember(p => p.IdRolPermiso, opt => opt.Ignore())
+            CreateMap<UpdateRolPermisoDTO, RolPermiso>()
                 .ForMember(p => p.FechaCreacion, opt => opt.Ignore())
                 .ForMember(p => p.UsuarioCreacion, opt => opt.Ignore())
                 .ForMember(p => p.Activo, opt => opt.Ignore());

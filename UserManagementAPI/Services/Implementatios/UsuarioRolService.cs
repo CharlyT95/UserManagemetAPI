@@ -20,7 +20,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _mapper = mapper;
         }
 
-        public async Task<CreateUsuarioRolDTO> CreateUsuarioRol(CreateUsuarioRolDTO usuarioRol)
+        public async Task<UsuarioRolDTO> CreateUsuarioRol(CreateUsuarioRolDTO usuarioRol)
         {
             // Validar Usuario existente y Rol existente
             var usuario = await _context.Usuario
@@ -53,7 +53,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.UsuarioRol.Add(data);
             await _context.SaveChangesAsync();
-            return _mapper.Map<CreateUsuarioRolDTO>(data);
+            return _mapper.Map<UsuarioRolDTO>(data);
         }
 
         public async Task<List<UsuarioRolDTO>> GetRolPorUsuario(int idUsuario)

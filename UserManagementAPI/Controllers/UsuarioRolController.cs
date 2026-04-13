@@ -17,14 +17,14 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
             _usuarioRolService = usuarioRolService;
         }
 
-        [HttpPost("AsignarRolUsuario")]
+        [HttpPost]
         public async Task<IActionResult> AsignarRolUsuario([FromBody] CreateUsuarioRolDTO usuarioRol)
-        { 
+        {
             var data = await _usuarioRolService.CreateUsuarioRol(usuarioRol);
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpGet("UsuarioRol")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetRolesPorUsuario(int idUsuario)
         {
             var data = await _usuarioRolService.GetRolPorUsuario(idUsuario);
@@ -32,7 +32,7 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
 
         }
 
-        [HttpPatch("CambiarEstado")]
+        [HttpPost("estado/{id}")]
         public async Task<IActionResult> DeactivateRolToUsuario(int idUsuarioRol, [FromBody] CambiarEstadoDTO estado)
         {
             var data = await _usuarioRolService.CambiarEstadoUsuarioRol(idUsuarioRol,estado.activo);
