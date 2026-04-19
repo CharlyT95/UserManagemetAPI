@@ -25,7 +25,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         {
             var data = _mapper.Map<UsuarioCredencial>(uc);
             //Validar que el usuario exista
-            var validarUsuario = await _context.Usuario.AnyAsync(u => u.IdUsuario == uc.IdUsuario);
+            var validarUsuario = await _context.Usuario.AnyAsync(u => u.IdUsuario == uc.IdUsuario || u.Activo == false);
             if (!validarUsuario)
                 throw new Exception(UsuarioCredencialErrors.UsuarioNoExistente);
 
@@ -53,6 +53,11 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<bool> ChangePassword(CambiarPasswordDTO passwordDTO)
         {
+
+            var validaractivo = await _context.Usuario.AnyAsync(u => u.Activo == false);
+            if (validaractivo)
+                throw new Exception(UsuarioCredencialErrors.UsuarioInactivo);
+            
             var usuario = await _context.UsuarioCredencial
                 .FirstOrDefaultAsync(u => u.IdUsuario == passwordDTO.IdUsuario);
 
@@ -99,6 +104,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<LoginResponseDTO> Login(LoginDTO login)
         {
+            var validaractivo = await _context.Usuario.AnyAsync(u => u.Activo == false);
+            if (validaractivo)
+                throw new Exception(UsuarioCredencialErrors.UsuarioInactivo);
+
             var usuarioData = await (
                 from u in _context.Usuario
                 join c in _context.UsuarioCredencial
@@ -158,5 +167,3 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         }
     }
 }
-
-//Tanto Has como Salt pasar a varbinary

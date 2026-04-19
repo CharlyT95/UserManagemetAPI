@@ -48,7 +48,7 @@ namespace UserManagementAPI.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> UpdateUsuario([FromBody] UpdateUsuarioDTO usuario)
         {
             var data = await _userService.UpdateUsuarioAsync(usuario);

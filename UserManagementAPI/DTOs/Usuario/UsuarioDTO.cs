@@ -18,5 +18,7 @@ namespace UserManagementAPI.DTOs.Usuario
         [Required(ErrorMessage = "El correo electrónico es obligatorio")]
         public string CorreoElectronico { get; set; }
 
+        public bool Activo { get; set; }
+
     }
 }

@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\usermanagementapi\\usermanagementapi\\usermanagementapi\\errors\\rolpermiso\\rolpermisoerrors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\errors\\rolpermiso\\rolpermisoerrors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\usermanagementapi\\usermanagementapi\\usermanagementapi\\services\\implementatios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\services\\implementatios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\usermanagementapi\\usermanagementapi\\usermanagementapi\\services\\implementatios\\rolpermisoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\services\\implementatios\\rolpermisoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\usermanagementapi\\usermanagementapi\\usermanagementapi\\services\\implementatios\\usuariocredencialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\services\\implementatios\\usuariocredencialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\usermanagementapi\\usermanagementapi\\usermanagementapi\\mappings\\rolpermisoprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\mappings\\rolpermisoprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\usermanagementapi\\usermanagementapi\\usermanagementapi\\controllers\\rolpermisocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\controllers\\rolpermisocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\usermanagementapi\\usermanagementapi\\usermanagementapi\\errors\\usuariocredencial\\usuariocredencialerrors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\errors\\usuariocredencial\\usuariocredencialerrors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,54 +70,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RolPermisoErrors.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Errors\\RolPermiso\\RolPermisoErrors.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Errors\\RolPermiso\\RolPermisoErrors.cs",
-              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Errors\\RolPermiso\\RolPermisoErrors.cs",
-              "RelativeToolTip": "UserManagementAPI\\Errors\\RolPermiso\\RolPermisoErrors.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T00:22:28.137Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "RolPermisoProfile.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Mappings\\RolPermisoProfile.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Mappings\\RolPermisoProfile.cs",
-              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Mappings\\RolPermisoProfile.cs",
-              "RelativeToolTip": "UserManagementAPI\\Mappings\\RolPermisoProfile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
+              "Title": "UsuarioCredencialErrors.cs",
+              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Errors\\UsuarioCredencial\\UsuarioCredencialErrors.cs",
+              "RelativeDocumentMoniker": "UserManagementAPI\\Errors\\UsuarioCredencial\\UsuarioCredencialErrors.cs",
+              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Errors\\UsuarioCredencial\\UsuarioCredencialErrors.cs",
+              "RelativeToolTip": "UserManagementAPI\\Errors\\UsuarioCredencial\\UsuarioCredencialErrors.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T00:18:34.23Z",
+              "WhenOpened": "2026-04-19T03:06:28.862Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RolPermisoController.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Controllers\\RolPermisoController.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Controllers\\RolPermisoController.cs",
-              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Controllers\\RolPermisoController.cs",
-              "RelativeToolTip": "UserManagementAPI\\Controllers\\RolPermisoController.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAQwB4AAAA0AAAA",
+              "DocumentIndex": 0,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
+              "RelativeToolTip": "UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAgwE0AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T00:11:08.699Z",
+              "WhenOpened": "2026-04-19T02:58:01.569Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RolPermisoService.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Services\\Implementatios\\RolPermisoService.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\Implementatios\\RolPermisoService.cs",
-              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Services\\Implementatios\\RolPermisoService.cs",
-              "RelativeToolTip": "UserManagementAPI\\Services\\Implementatios\\RolPermisoService.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAowDEAAAA0AAAA",
+              "Title": "UsuarioCredencialService.cs",
+              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\UserManagementAPI\\UserManagementAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "RelativeToolTip": "UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAwwG4AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T00:11:02.738Z",
+              "WhenOpened": "2026-04-19T02:54:11.268Z",
               "EditorCaption": ""
             }
           ]

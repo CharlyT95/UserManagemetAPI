@@ -19,7 +19,7 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Crear([FromBody] CreateRolPermisoDTO rolpermiso)
-        { 
+        {
             var data = await _rolPermisoService.AsignarRolPermiso(rolpermiso);
             return Ok(ResponseHelper.Success(data));
         }
@@ -29,6 +29,13 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
         {
             var data = await _rolPermisoService.ModificarRolPermiso(rolpermiso);
             return Ok(ResponseHelper.Success(data));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObtenerPermisos(int idRol)
+        {
+            var data = await _rolPermisoService.GetRolPermiso(idRol);
+            return Ok(ResponseHelper.Success(data)); 
         }
     }
 }

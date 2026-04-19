@@ -47,7 +47,7 @@ namespace UserManagementAPI.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> UpdateRol([FromBody] UpdateRolDTO rol)
         {
             var data = await _rolService.UpdateRol(rol);

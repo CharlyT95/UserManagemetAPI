@@ -24,7 +24,7 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<IActionResult> GetRolesPorUsuario(int idUsuario)
         {
             var data = await _usuarioRolService.GetRolPorUsuario(idUsuario);

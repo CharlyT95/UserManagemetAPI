@@ -13,5 +13,7 @@ namespace UserManagementAPI.DTOs.Permiso
         [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
         public string? Modulo { get; set; }
+
+        public bool Activo { get; set; }
     }
 }

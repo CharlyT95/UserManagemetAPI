@@ -75,6 +75,22 @@
   },
   {
     "ContainingType": "UserManagementAPI.Controllers.PermisoController",
+    "Method": "UpdatePermiso",
+    "RelativePath": "api/Permiso",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "permiso",
+        "Type": "UserManagementAPI.DTOs.Permiso.UpdatePermisoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserManagementAPI.Controllers.PermisoController",
     "Method": "GetPermissionById",
     "RelativePath": "api/Permiso/{id}",
     "HttpMethod": "GET",
@@ -84,27 +100,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserManagementAPI.Controllers.PermisoController",
-    "Method": "UpdatePermiso",
-    "RelativePath": "api/Permiso/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "permiso",
-        "Type": "UserManagementAPI.DTOs.Permiso.UpdatePermisoDTO",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "",
         "IsRequired": true
       }
     ],
@@ -159,6 +154,22 @@
   },
   {
     "ContainingType": "UserManagementAPI.Controllers.RolController",
+    "Method": "UpdateRol",
+    "RelativePath": "api/Rol",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rol",
+        "Type": "UserManagementAPI.DTOs.Rol.UpdateRolDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserManagementAPI.Controllers.RolController",
     "Method": "RolById",
     "RelativePath": "api/Rol/{id}",
     "HttpMethod": "GET",
@@ -168,27 +179,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserManagementAPI.Controllers.RolController",
-    "Method": "UpdateRol",
-    "RelativePath": "api/Rol/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "rol",
-        "Type": "UserManagementAPI.DTOs.Rol.UpdateRolDTO",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "",
         "IsRequired": true
       }
     ],
@@ -248,6 +238,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.RolPermisoController",
+    "Method": "ObtenerPermisos",
+    "RelativePath": "api/RolPermiso",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRol",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
     "Method": "GetUsers",
     "RelativePath": "api/Usuario",
@@ -275,6 +281,22 @@
   },
   {
     "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
+    "Method": "UpdateUsuario",
+    "RelativePath": "api/Usuario",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario",
+        "Type": "UserManagementAPI.DTOs.Usuario.UpdateUsuarioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
     "Method": "getUserById",
     "RelativePath": "api/Usuario/{id}",
     "HttpMethod": "GET",
@@ -284,27 +306,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
-    "Method": "UpdateUsuario",
-    "RelativePath": "api/Usuario/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "usuario",
-        "Type": "UserManagementAPI.DTOs.Usuario.UpdateUsuarioDTO",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "",
         "IsRequired": true
       }
     ],
@@ -350,7 +351,7 @@
   {
     "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioRolController",
     "Method": "GetRolesPorUsuario",
-    "RelativePath": "api/UsuarioRol/{id}",
+    "RelativePath": "api/UsuarioRol",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -359,11 +360,6 @@
         "Name": "idUsuario",
         "Type": "System.Int32",
         "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []

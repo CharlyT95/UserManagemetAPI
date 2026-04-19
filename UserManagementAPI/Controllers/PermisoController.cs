@@ -46,7 +46,7 @@ namespace UserManagementAPI.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> UpdatePermiso([FromBody] UpdatePermisoDTO permiso)
         {
             var data = await _permisoService.UpdatePermiso(permiso);
