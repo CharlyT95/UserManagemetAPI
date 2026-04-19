@@ -32,7 +32,7 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
 
         }
 
-        [HttpPost("estado/{id}")]
+        [HttpPost("estado")]
         public async Task<IActionResult> DeactivateRolToUsuario(int idUsuarioRol, [FromBody] CambiarEstadoDTO estado)
         {
             var data = await _usuarioRolService.CambiarEstadoUsuarioRol(idUsuarioRol,estado.activo);

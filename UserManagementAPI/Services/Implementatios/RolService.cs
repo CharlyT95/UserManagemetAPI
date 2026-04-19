@@ -50,11 +50,17 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<RolDTO> UpdateRol(UpdateRolDTO rol)
         {
-            var data = await _context.Rol.Where(r => r.IdRol == rol.IdRol).FirstOrDefaultAsync();
+            var data = await _context.Rol
+                .FirstOrDefaultAsync(r => r.IdRol == rol.IdRol);
+
             if (data == null)
                 throw new Exception(RolErrors.RolNoEncontrado);
 
-            _context.Rol.Add(data);
+            _mapper.Map(rol, data);
+
+            // Auditoría
+            data.FechaModificacion = DateTime.Now;
+
             await _context.SaveChangesAsync();
             return _mapper.Map<RolDTO>(data);
         }

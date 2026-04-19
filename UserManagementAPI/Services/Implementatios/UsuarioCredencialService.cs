@@ -4,6 +4,7 @@ using Aduanas.Aci.Usuarios.Api.Services.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
+using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Models;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
@@ -25,7 +26,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         {
             var data = _mapper.Map<UsuarioCredencial>(uc);
             //Validar que el usuario exista
-            var validarUsuario = await _context.Usuario.AnyAsync(u => u.IdUsuario == uc.IdUsuario || u.Activo == false);
+            var validarUsuario = await _context.Usuario.AnyAsync(u => u.IdUsuario == uc.IdUsuario && u.Activo == true);
             if (!validarUsuario)
                 throw new Exception(UsuarioCredencialErrors.UsuarioNoExistente);
 
@@ -53,8 +54,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<bool> ChangePassword(CambiarPasswordDTO passwordDTO)
         {
-
-            var validaractivo = await _context.Usuario.AnyAsync(u => u.Activo == false);
+            var validaractivo = await _context.Usuario.AnyAsync(u => u.IdUsuario == passwordDTO.IdUsuario && u.Activo == false);
             if (validaractivo)
                 throw new Exception(UsuarioCredencialErrors.UsuarioInactivo);
             
@@ -93,8 +93,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         {
             var data = _mapper.Map<UsuarioCredencial>(usuarioDTO);
             //Validar usuario
-            var validarUsuario = await _context.UsuarioCredencial.FirstOrDefaultAsync(u => u.IdUsuario == usuarioDTO.IdUsuario);
-            if (validarUsuario == null)
+            var validarUsuario = await _context.Usuario.AnyAsync(u => u.IdUsuario == usuarioDTO.IdUsuario && u.Activo == true);
+            if (!validarUsuario)
                 throw new Exception(UsuarioCredencialErrors.UsuarioNoExistente);
 
             data.BloqueoTemporal = false;
@@ -104,7 +104,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<LoginResponseDTO> Login(LoginDTO login)
         {
-            var validaractivo = await _context.Usuario.AnyAsync(u => u.Activo == false);
+            var validaractivo = await _context.Usuario.AnyAsync(u => u.UsuarioLogin == login.UsuarioLogin && u.Activo == false);
             if (validaractivo)
                 throw new Exception(UsuarioCredencialErrors.UsuarioInactivo);
 
@@ -141,10 +141,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 credencial.IntentosFallidos++;
 
                 //bloquear si llega a 5 intentos
-                if (credencial.IntentosFallidos >= 5)
+                if (credencial.IntentosFallidos > 5)
                 {
                     credencial.BloqueoTemporal = true;
-                    
+                    await _context.SaveChangesAsync();
                     throw new Exception(UsuarioCredencialErrors.BloqueoAutomatico);
                 }
                 await _context.SaveChangesAsync();

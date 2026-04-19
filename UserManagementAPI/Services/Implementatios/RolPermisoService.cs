@@ -23,11 +23,11 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         {
             var data = _mapper.Map<RolPermiso>(rolpermiso);
 
-            var validarPermiso = await _context.Permiso.AnyAsync(permiso => permiso.IdPermiso == rolpermiso.IdPermiso || permiso.Activo == false);
+            var validarPermiso = await _context.Permiso.AnyAsync(permiso => permiso.IdPermiso == rolpermiso.IdPermiso && permiso.Activo == true);
             if (!validarPermiso)
                 throw new Exception(RolPermisoErrors.PermisoNoEncontrado);
 
-            var validarRol = await _context.Rol.AnyAsync(rol => rol.IdRol == rolpermiso.IdRol || rol.Activo == false);
+            var validarRol = await _context.Rol.AnyAsync(rol => rol.IdRol == rolpermiso.IdRol && rol.Activo == true);
             if (!validarRol)
                 throw new Exception(RolPermisoErrors.RolNoEncontrado);
 
@@ -55,13 +55,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 throw new Exception(RolPermisoErrors.RolPermisoNoEncontrado);
 
             var validarPermiso = await _context.Permiso
-                .AnyAsync(p => p.IdPermiso == rolpermiso.IdPermiso);
+                .AnyAsync(p => p.IdPermiso == rolpermiso.IdPermiso && p.Activo == true);
 
             if (!validarPermiso)
                 throw new Exception(RolPermisoErrors.PermisoNoEncontrado);
 
             var validarRol = await _context.Rol
-                .AnyAsync(r => r.IdRol == rolpermiso.IdRol);
+                .AnyAsync(r => r.IdRol == rolpermiso.IdRol && r.Activo == true);
 
             if (!validarRol)
                 throw new Exception(RolPermisoErrors.RolNoEncontrado);

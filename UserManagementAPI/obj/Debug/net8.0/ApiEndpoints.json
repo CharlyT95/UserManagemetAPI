@@ -367,7 +367,7 @@
   {
     "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioRolController",
     "Method": "DeactivateRolToUsuario",
-    "RelativePath": "api/UsuarioRol/estado/{id}",
+    "RelativePath": "api/UsuarioRol/estado",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -380,11 +380,6 @@
       {
         "Name": "estado",
         "Type": "Aduanas.Aci.Usuarios.Api.DTOs.CambiarEstadoDTO",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "",
         "IsRequired": true
       }
     ],
