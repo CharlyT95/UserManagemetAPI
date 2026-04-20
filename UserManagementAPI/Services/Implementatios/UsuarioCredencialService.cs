@@ -4,6 +4,8 @@ using Aduanas.Aci.Usuarios.Api.Services.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
+using UserManagementAPI.DTOs.Permiso;
+using UserManagementAPI.DTOs.Rol;
 using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Models;
 
@@ -104,7 +106,9 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<LoginResponseDTO> Login(LoginDTO login)
         {
-            var validaractivo = await _context.Usuario.AnyAsync(u => u.UsuarioLogin == login.UsuarioLogin && u.Activo == false);
+            var validaractivo = await _context.Usuario
+                .AnyAsync(u => u.UsuarioLogin == login.UsuarioLogin && u.Activo == false);
+
             if (validaractivo)
                 throw new Exception(UsuarioCredencialErrors.UsuarioInactivo);
 
@@ -129,7 +133,6 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             if (credencial.BloqueoTemporal)
                 throw new Exception(UsuarioCredencialErrors.Bloqueo);
 
-            //Validar password
             var loginValido = _passwordService.VerifyPassword(
                 login.Password,
                 credencial.PasswordHash,
@@ -140,29 +143,50 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             {
                 credencial.IntentosFallidos++;
 
-                //bloquear si llega a 5 intentos
                 if (credencial.IntentosFallidos > 5)
                 {
                     credencial.BloqueoTemporal = true;
                     await _context.SaveChangesAsync();
                     throw new Exception(UsuarioCredencialErrors.BloqueoAutomatico);
                 }
+
                 await _context.SaveChangesAsync();
                 throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
             }
 
-            // reset a intentos fallidos
             if (credencial.IntentosFallidos > 0)
             {
                 credencial.IntentosFallidos = 0;
                 await _context.SaveChangesAsync();
             }
 
+            var roles = await _context.UsuarioRol
+                .Where(ur => ur.IdUsuario == usuario.IdUsuario && ur.Activo)
+                .Select(ur => new LoginResponseRolesDTO
+                {
+                    IdRol = ur.IdRol,
+                    Nombre = ur.Rol.Nombre,
+
+                    Permisos = _context.RolPermiso
+                        .Where(rp => rp.IdRol == ur.IdRol)
+                        .Select(rp => new PermisoDTO
+                        {
+                            IdPermiso = rp.IdPermiso,
+                            CodigoPermiso = rp.Permiso.CodigoPermiso,
+                            Descripcion = rp.Permiso.Descripcion,
+                            Modulo = rp.Permiso.Modulo,
+                            Accion = rp.Permiso.Accion,
+                            Referencia = rp.Permiso.Referencia
+                        }).ToList()
+                })
+                .ToListAsync();
+
             return new LoginResponseDTO
             {
                 Nombres = usuario.Nombres,
                 Apellidos = usuario.Apellidos,
-                UsuarioLogin = usuario.UsuarioLogin
+                UsuarioLogin = usuario.UsuarioLogin,
+                Roles = roles
             };
         }
     }

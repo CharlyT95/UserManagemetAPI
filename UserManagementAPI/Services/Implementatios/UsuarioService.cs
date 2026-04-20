@@ -1,12 +1,9 @@
-﻿using Aduanas.Aci.Usuarios.Api.Errors.Rol;
-using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
+﻿using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
 using UserManagementAPI.DTOs.Usuario;
-using UserManagementAPI.Helpers;
 using UserManagementAPI.Models;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
@@ -32,7 +29,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 throw new Exception(UsuarioErrors.CorreoDuplicado);
 
             if (validarLogin)
-                throw new Exception(UsuarioErrors.LginUsuarioDuplicado);
+                throw new Exception(UsuarioErrors.LoginUsuarioDuplicado);
 
             // Auditoría
             data.FechaCreacion = DateTime.Now;
@@ -45,12 +42,16 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<List<UsuarioDTO>> GetUsuariosAsync()
         {
-            var ListaUsuarios = await _context.Usuario.OrderBy(usuario => usuario.IdUsuario).ProjectTo<UsuarioDTO>(_mapper.ConfigurationProvider).ToListAsync();
+            var ListaUsuarios = await _context.Usuario.Where(usuario => usuario.Activo == true).OrderBy(usuario => usuario.IdUsuario).ProjectTo<UsuarioDTO>(_mapper.ConfigurationProvider).ToListAsync();
             return ListaUsuarios;
         }
 
         public async Task<UsuarioDTO> GetUsuarioByIdAsync(int id)
         {
+            var validarActivo = await _context.Usuario.AnyAsync(usuario => usuario.IdUsuario == id && usuario.Activo == true);
+            if (!validarActivo)
+                throw new Exception(UsuarioErrors.UsuarioInactivoBoolInactivo);
+
             var usuario = await _context.Usuario.Where(usuario => usuario.IdUsuario == id).ProjectTo<UsuarioDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
             return usuario;
         }

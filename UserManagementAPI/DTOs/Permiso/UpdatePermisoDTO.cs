@@ -17,5 +17,8 @@ namespace UserManagementAPI.DTOs.Permiso
 
         [Required(ErrorMessage = "usuario quien modifica es obligatorio")]
         public string? UsuarioModificacion { get; set; }
+
+        public string? Accion { get; set; }
+        public string? Referencia { get; set; }
     }
 }

@@ -22,13 +22,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<List<RolDTO>> getRoles()
         {
-            var roles = await _context.Rol.OrderBy(r => r.IdRol).ProjectTo<RolDTO>(_mapper.ConfigurationProvider).ToListAsync();
+            var roles = await _context.Rol.Where(rol => rol.Activo == true).OrderBy(r => r.IdRol).ProjectTo<RolDTO>(_mapper.ConfigurationProvider).ToListAsync();
             return roles;
         }
 
         public async Task<RolDTO> getRolById(int id)
         {
-            var rol = await _context.Rol.Where(r => r.IdRol == id).ProjectTo<RolDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+            var rol = await _context.Rol.Where(r => r.IdRol == id && r.Activo == true).ProjectTo<RolDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
             return rol;
         }
 

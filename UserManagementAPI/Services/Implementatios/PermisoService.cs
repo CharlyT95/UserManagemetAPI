@@ -24,7 +24,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         public async Task<PermisoDTO> CreatePermisoAsync(CreatePermisoDTO permiso)
         {
             var data = _mapper.Map<Permiso>(permiso);
-            var validarCodigo = await _context.Permiso.AnyAsync(p => p.CodigoPermiso == permiso.CodigoPermiso);
+            var validarCodigo = await _context.Permiso.AnyAsync(p => p.CodigoPermiso == permiso.CodigoPermiso && p.Activo == true);
 
             if (validarCodigo)
                 throw new Exception(PermisoErrors.CodigoPermisoDuplicado);
@@ -39,13 +39,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<List<PermisoDTO>> GetPermisos()
         {
-            var permisos = await _context.Permiso.OrderBy(p => p.IdPermiso).ProjectTo<PermisoDTO>(_mapper.ConfigurationProvider).ToListAsync();
+            var permisos = await _context.Permiso.Where(permiso => permiso.Activo == true).OrderBy(p => p.IdPermiso).ProjectTo<PermisoDTO>(_mapper.ConfigurationProvider).ToListAsync();
             return permisos;
         }
 
         public async Task<PermisoDTO> GetPermisoById(int id)
         {
-            var permiso = await _context.Permiso.Where(p => p.IdPermiso == id).OrderBy(p => p.IdPermiso).ProjectTo<PermisoDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+            var permiso = await _context.Permiso.Where(p => p.IdPermiso == id && p.Activo == true).OrderBy(p => p.IdPermiso).ProjectTo<PermisoDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
             return permiso;
         }
 

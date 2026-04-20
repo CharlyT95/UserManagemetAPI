@@ -82,7 +82,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             if (!validarRol)
                 throw new Exception(RolPermisoErrors.RolNoEncontrado);
 
-            var validarPermisos = await _context.RolPermiso.Where(r => r.IdRol == idRol).Include(r => r.Permiso).ToListAsync();
+            var validarPermisos = await _context.RolPermiso.Where(r => r.IdRol == idRol && r.Activo == true).Include(r => r.Permiso).ToListAsync();
             if (validarPermisos.Count == 0)
                 throw new Exception(RolPermisoErrors.RolSinPermisos);
 
@@ -92,8 +92,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                     {
                         IdRolPermiso = r.IdRolPermiso,
                         CodigoPermiso = r.Permiso.CodigoPermiso,
-                        Descripcion = r.Permiso.Descripcion,
-                        activo = r.Permiso.Activo
+                        Descripcion = r.Permiso.Descripcion
                     }
                 ).ToList();
 

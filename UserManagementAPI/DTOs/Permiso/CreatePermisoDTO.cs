@@ -14,5 +14,8 @@ namespace UserManagementAPI.DTOs.Permiso
         [Required(ErrorMessage = "El nombre del usuario quien crea es obligatorio")]
         public string UsuarioCreacion { get; set; }
 
+        public string? Accion { get; set; }
+        public string? Referencia { get; set; }
+
     }
 }
