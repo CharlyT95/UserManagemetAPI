@@ -1,5 +1,6 @@
 ﻿using Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso;
 using Aduanas.Aci.Usuarios.Api.Errors.RolPermiso;
+using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
@@ -23,15 +24,15 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         {
             var data = _mapper.Map<RolPermiso>(rolpermiso);
 
-            var validarPermiso = await _context.Permiso.AnyAsync(permiso => permiso.IdPermiso == rolpermiso.IdPermiso && permiso.Activo == true);
+            var validarPermiso = await _context.Permiso.AnyAsync(permiso => permiso.IdPermiso == rolpermiso.IdPermiso && permiso.Activo);
             if (!validarPermiso)
                 throw new Exception(RolPermisoErrors.PermisoNoEncontrado);
 
-            var validarRol = await _context.Rol.AnyAsync(rol => rol.IdRol == rolpermiso.IdRol && rol.Activo == true);
+            var validarRol = await _context.Rol.AnyAsync(rol => rol.IdRol == rolpermiso.IdRol && rol.Activo);
             if (!validarRol)
                 throw new Exception(RolPermisoErrors.RolNoEncontrado);
 
-            var validarAsignacion = await _context.RolPermiso.AnyAsync(rp => rp.IdRol == rolpermiso.IdRol && rp.IdPermiso == rolpermiso.IdPermiso);
+            var validarAsignacion = await _context.RolPermiso.AnyAsync(rp => rp.IdRol == rolpermiso.IdRol && rp.IdPermiso == rolpermiso.IdPermiso && rp.Activo);
             if (validarAsignacion)
                 throw new Exception(RolPermisoErrors.PermisoYaAsignado);
 
@@ -49,7 +50,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         public async Task<bool> ModificarRolPermiso(UpdateRolPermisoDTO rolpermiso)
         {
             var entity = await _context.RolPermiso
-                .FirstOrDefaultAsync(rp => rp.IdRolPermiso == rolpermiso.IdRolPermiso);
+                .FirstOrDefaultAsync(rp => rp.IdRolPermiso == rolpermiso.IdRolPermiso && rp.Activo);
 
             if (entity == null)
                 throw new Exception(RolPermisoErrors.RolPermisoNoEncontrado);
@@ -65,6 +66,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             if (!validarRol)
                 throw new Exception(RolPermisoErrors.RolNoEncontrado);
+
 
             _mapper.Map(rolpermiso, entity);
 
@@ -82,7 +84,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             if (!validarRol)
                 throw new Exception(RolPermisoErrors.RolNoEncontrado);
 
-            var validarPermisos = await _context.RolPermiso.Where(r => r.IdRol == idRol && r.Activo == true).Include(r => r.Permiso).ToListAsync();
+            var validarPermisos = await _context.RolPermiso
+                .Where(r => r.IdRol == idRol &&
+                            r.Activo &&
+                            r.Permiso.Activo)
+                .Include(r => r.Permiso)
+                .ToListAsync();
+
             if (validarPermisos.Count == 0)
                 throw new Exception(RolPermisoErrors.RolSinPermisos);
 
@@ -97,6 +105,30 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 ).ToList();
 
             return resultado;
+        }
+
+        public async Task<bool> CambiarEstadoRolPermisol(int idURolPermiso, bool activo)
+        {
+            if (idURolPermiso <= 0)
+                throw new Exception(RolPermisoErrors.RolPermisoNoEncontrado);
+
+            var data = await _context.RolPermiso
+                .FirstOrDefaultAsync(ur => ur.IdRolPermiso == idURolPermiso);
+
+            if (data == null)
+                throw new Exception(RolPermisoErrors.RolPermisoNoEncontrado);
+
+            if (!data.Activo && activo == false)
+                throw new Exception(RolPermisoErrors.InactivoBoolInactivo);
+
+            if (data.Activo && activo == true)
+                throw new Exception(RolPermisoErrors.ActivoBoolActivo);
+
+            //Auditoria
+            data.Activo = activo;
+
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

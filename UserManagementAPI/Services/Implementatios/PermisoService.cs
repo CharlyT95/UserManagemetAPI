@@ -1,5 +1,6 @@
 ﻿using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
 using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
+using Aduanas.Aci.Usuarios.Api.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -51,9 +52,15 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<PermisoDTO> UpdatePermiso(UpdatePermisoDTO permiso)
         {
-            var data = await _context.Permiso.FirstOrDefaultAsync(p => p.IdPermiso == permiso.IdPermiso);
+            var nombreNormalizado = permiso.CodigoPermiso.NormalizarTexto();
+
+            var data = await _context.Permiso.FirstOrDefaultAsync(p => p.IdPermiso == permiso.IdPermiso && p.Activo);
             if (data == null)
                 throw new Exception("Permiso no encontrado");
+
+            var validarCodigo = await _context.Permiso.AnyAsync(p => p.IdPermiso != permiso.IdPermiso && p.CodigoPermiso.Trim().Replace(" ", "").ToLower() == nombreNormalizado && p.Activo);
+            if (validarCodigo)
+                throw new Exception(PermisoErrors.CodigoPermisoDuplicado);
 
             _mapper.Map(permiso, data);
 

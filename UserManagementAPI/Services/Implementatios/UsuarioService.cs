@@ -1,4 +1,6 @@
-﻿using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
+﻿using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
+using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
+using Aduanas.Aci.Usuarios.Api.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -42,13 +44,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<List<UsuarioDTO>> GetUsuariosAsync()
         {
-            var ListaUsuarios = await _context.Usuario.Where(usuario => usuario.Activo == true).OrderBy(usuario => usuario.IdUsuario).ProjectTo<UsuarioDTO>(_mapper.ConfigurationProvider).ToListAsync();
+            var ListaUsuarios = await _context.Usuario.Where(usuario => usuario.Activo).OrderBy(usuario => usuario.IdUsuario).ProjectTo<UsuarioDTO>(_mapper.ConfigurationProvider).ToListAsync();
             return ListaUsuarios;
         }
 
         public async Task<UsuarioDTO> GetUsuarioByIdAsync(int id)
         {
-            var validarActivo = await _context.Usuario.AnyAsync(usuario => usuario.IdUsuario == id && usuario.Activo == true);
+            var validarActivo = await _context.Usuario.AnyAsync(usuario => usuario.IdUsuario == id && usuario.Activo);
             if (!validarActivo)
                 throw new Exception(UsuarioErrors.UsuarioInactivoBoolInactivo);
 
@@ -58,10 +60,32 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<UsuarioDTO> UpdateUsuarioAsync(UpdateUsuarioDTO usuario)
         {
-            var data = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario == usuario.IdUsuario);
+            var nombreNormalizado = usuario.UsuarioLogin.NormalizarTexto();
+            var correoNormalizado = usuario.CorreoElectronico.NormalizarTexto();
 
-            if (usuario == null)
-                throw new Exception("Usuario no encontrado");
+            var data = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario == usuario.IdUsuario && x.Activo);
+            if (data == null)
+                throw new Exception(UsuarioErrors.UsuarioNoEncontrado);
+
+            var usuarioDuplicado = await _context.Usuario
+                 .Where(p => p.IdUsuario != usuario.IdUsuario && p.Activo)
+                 .Select(p => new
+                 {
+                     UsuarioLogin = (p.UsuarioLogin ?? "").Trim().Replace(" ", "").ToLower(),
+                     Correo = (p.CorreoElectronico ?? "").Trim().Replace(" ", "").ToLower()
+                 })
+                 .FirstOrDefaultAsync(p =>
+                     p.UsuarioLogin == nombreNormalizado ||
+                     p.Correo == correoNormalizado);
+
+            if (usuarioDuplicado != null)
+            {
+                if (usuarioDuplicado.UsuarioLogin == nombreNormalizado)
+                    throw new Exception(UsuarioErrors.UsuarioLoginYaExiste);
+
+                if (usuarioDuplicado.Correo == correoNormalizado)
+                    throw new Exception(UsuarioErrors.CorreoDuplicado);
+            }
 
             _mapper.Map(usuario, data);
 

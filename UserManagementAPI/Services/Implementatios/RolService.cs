@@ -1,5 +1,6 @@
 ﻿using Aduanas.Aci.Usuarios.Api.Errors.Rol;
 using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
+using Aduanas.Aci.Usuarios.Api.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -34,8 +35,12 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<RolDTO> CreateRol(CreateRolDTO rol)
         {
+            var nombreNormalizado = rol.Nombre.NormalizarTexto();
             var data = _mapper.Map<Rol>(rol);
-            var validarNombre = await _context.Rol.AnyAsync(r => r.Nombre == rol.Nombre);
+
+            var validarNombre = await _context.Rol
+                .AnyAsync(r => r.Activo &&
+                    r.Nombre.Trim().Replace(" ", "").ToLower() == nombreNormalizado);
 
             if (validarNombre)
                 throw new Exception(RolErrors.NombreDuplicado);
@@ -50,11 +55,18 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<RolDTO> UpdateRol(UpdateRolDTO rol)
         {
-            var data = await _context.Rol
-                .FirstOrDefaultAsync(r => r.IdRol == rol.IdRol);
+            var nombreNormalizado = rol.Nombre.NormalizarTexto();
 
+            var data = await _context.Rol
+                .FirstOrDefaultAsync(r => r.IdRol == rol.IdRol && r.Activo);
             if (data == null)
                 throw new Exception(RolErrors.RolNoEncontrado);
+
+            var validarNombre = await _context.Rol
+                .AnyAsync(r => r.IdRol != rol.IdRol && r.Activo &&
+                    r.Nombre.Trim().Replace(" ", "").ToLower() == nombreNormalizado);
+            if (validarNombre)
+                throw new Exception(RolErrors.NombreDuplicado);
 
             _mapper.Map(rol, data);
 

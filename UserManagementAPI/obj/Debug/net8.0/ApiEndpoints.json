@@ -254,6 +254,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.RolPermisoController",
+    "Method": "DeactivateRolToUsuario",
+    "RelativePath": "api/RolPermiso/estado",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idRolPermiso",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "estado",
+        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.CambiarEstadoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "UserManagementAPI.Controllers.UsuarioController",
     "Method": "GetUsers",
     "RelativePath": "api/Usuario",

@@ -1,4 +1,5 @@
-﻿using Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso;
+﻿using Aduanas.Aci.Usuarios.Api.DTOs;
+using Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso;
 using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.Helpers;
@@ -36,6 +37,13 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
         {
             var data = await _rolPermisoService.GetRolPermiso(idRol);
             return Ok(ResponseHelper.Success(data)); 
+        }
+
+        [HttpPost("estado")]
+        public async Task<IActionResult> DeactivateRolToUsuario(int idRolPermiso, [FromBody] CambiarEstadoDTO estado)
+        {
+            var data = await _rolPermisoService.CambiarEstadoRolPermisol(idRolPermiso, estado.activo);
+            return Ok(ResponseHelper.Success(data));
         }
     }
 }

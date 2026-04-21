@@ -4,7 +4,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using UserManagementAPI.Data;
-using UserManagementAPI.DTOs.Rol;
 using UserManagementAPI.Models;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios

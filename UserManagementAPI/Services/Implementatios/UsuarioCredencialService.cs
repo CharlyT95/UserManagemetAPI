@@ -168,7 +168,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                     Nombre = ur.Rol.Nombre,
 
                     Permisos = _context.RolPermiso
-                        .Where(rp => rp.IdRol == ur.IdRol)
+                        .Where(rp => rp.IdRol == ur.IdRol && rp.Activo)
                         .Select(rp => new PermisoDTO
                         {
                             IdPermiso = rp.IdPermiso,
