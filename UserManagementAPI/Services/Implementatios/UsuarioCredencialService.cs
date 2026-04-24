@@ -110,13 +110,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 .AnyAsync(u => u.UsuarioLogin == login.UsuarioLogin && u.Activo == false);
 
             if (validaractivo)
-                throw new Exception(UsuarioCredencialErrors.UsuarioInactivo);
+                throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
 
             var usuarioData = await (
                 from u in _context.Usuario
                 join c in _context.UsuarioCredencial
                     on u.IdUsuario equals c.IdUsuario
-                where u.UsuarioLogin == login.UsuarioLogin
+                where u.UsuarioLogin == login.UsuarioLogin && u.Activo
                 select new
                 {
                     Usuario = u,
@@ -161,14 +161,14 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             }
 
             var roles = await _context.UsuarioRol
-                .Where(ur => ur.IdUsuario == usuario.IdUsuario && ur.Activo)
+                .Where(ur => ur.IdUsuario == usuario.IdUsuario && ur.Activo && ur.Rol.Activo)
                 .Select(ur => new LoginResponseRolesDTO
                 {
                     IdRol = ur.IdRol,
                     Nombre = ur.Rol.Nombre,
 
                     Permisos = _context.RolPermiso
-                        .Where(rp => rp.IdRol == ur.IdRol && rp.Activo)
+                        .Where(rp => rp.IdRol == ur.IdRol && rp.Activo && rp.Rol.Activo && rp.Permiso.Activo)
                         .Select(rp => new PermisoDTO
                         {
                             IdPermiso = rp.IdPermiso,

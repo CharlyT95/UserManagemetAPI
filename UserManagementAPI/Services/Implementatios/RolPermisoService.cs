@@ -80,7 +80,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
         public async Task<List<RolPermisoDTO>> GetRolPermiso(int idRol)
         {
-            var validarRol = await _context.Rol.AnyAsync(r => r.IdRol == idRol);
+            var validarRol = await _context.Rol.AnyAsync(r => r.IdRol == idRol && r.Activo);
             if (!validarRol)
                 throw new Exception(RolPermisoErrors.RolNoEncontrado);
 

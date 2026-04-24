@@ -66,7 +66,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             var getRoles = await _context.UsuarioRol
                 .Include(u => u.Usuario).Include(r => r.Rol)
-                .Where(ur => ur.IdUsuario == idUsuario && ur.Activo == true).ProjectTo<UsuarioRolGetDTO>(_mapper.ConfigurationProvider).ToListAsync();
+                .Where(ur => ur.IdUsuario == idUsuario && ur.Activo && ur.Rol.Activo).ProjectTo<UsuarioRolGetDTO>(_mapper.ConfigurationProvider).ToListAsync();
             return getRoles;
 
         }
