@@ -91,9 +91,6 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 .Include(r => r.Permiso)
                 .ToListAsync();
 
-            if (validarPermisos.Count == 0)
-                throw new Exception(RolPermisoErrors.RolSinPermisos);
-
             var resultado = validarPermisos.Select
                 (
                     r => new RolPermisoDTO

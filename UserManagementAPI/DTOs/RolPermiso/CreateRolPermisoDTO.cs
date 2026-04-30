@@ -11,6 +11,7 @@ namespace Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso
         public int IdPermiso { get; set; }
 
         [Required(ErrorMessage = "Es necesario quien crea el rolPermiso")]
-        public string UsuarioCreacion { get; set; }
+        [MaxLength(50, ErrorMessage = "El nombre de usuario que crea el registro no puede exceder 50 caracteres")]
+        public string UsuarioCreacion { get; set; } = "admin";
     }
 }

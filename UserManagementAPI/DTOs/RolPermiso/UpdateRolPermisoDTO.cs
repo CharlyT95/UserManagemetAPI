@@ -14,6 +14,7 @@ namespace Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso
         public int IdPermiso { get; set; }
 
         [Required(ErrorMessage = "Es necesario el usuario que modifica")]
-        public string UsuarioModificacion { get; set; }
+        [MaxLength(50, ErrorMessage = "El nombre de usuario que modifica el registro no puede exceder 50 caracteres")]
+        public string UsuarioModificacion { get; set; } = "admin";
     }
 }

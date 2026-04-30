@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aduanas.Aci.Usuarios.Api", "UserManagementAPI\Aduanas.Aci.Usuarios.Api.csproj", "{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aduanas.Aci.Seguridad.Api", "Aduanas.Aci.Seguridad.Api\Aduanas.Aci.Seguridad.Api.csproj", "{FE32FC42-3CB0-40A4-86A5-454D87DB115F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aduanas.Aci.Seguridad.Api", "..\..\..\..\..\..\Downloads\Aduanas_Aci_Seguridad_Api_Optimizado\proyecto_output\Aduanas.Aci.Seguridad.Api\Aduanas.Aci.Seguridad.Api.csproj", "{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE32FC42-3CB0-40A4-86A5-454D87DB115F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE32FC42-3CB0-40A4-86A5-454D87DB115F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE32FC42-3CB0-40A4-86A5-454D87DB115F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE32FC42-3CB0-40A4-86A5-454D87DB115F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,36 @@
-﻿namespace Aduanas.Aci.Seguridad.Api.Services
+﻿using Aduanas.Aci.Seguridad.Api.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace Aduanas.Aci.Seguridad.Api.Services;
+
+public interface IPermissionService
 {
-    public class PermissionService
+    Task<bool> TienePermisoAsync(int idUsuario, string codigoPermiso);
+    Task<List<string>> ObtenerPermisosAsync(int idUsuario);
+}
+
+public class PermissionService : IPermissionService
+{
+    private readonly AppDbContext _db;
+    public PermissionService(AppDbContext db) => _db = db;
+
+    public async Task<List<string>> ObtenerPermisosAsync(int idUsuario)
     {
+        var idRoles = await _db.UsuarioRoles
+            .Where(ur => ur.IdUsuario == idUsuario)
+            .Select(ur => ur.IdRol)
+            .ToListAsync();
+
+        return await _db.RolPermisos
+            .Where(rp => idRoles.Contains(rp.IdRol))
+            .Select(rp => rp.Permiso.CodigoPermiso)
+            .Distinct()
+            .ToListAsync();
+    }
+
+    public async Task<bool> TienePermisoAsync(int idUsuario, string codigoPermiso)
+    {
+        var permisos = await ObtenerPermisosAsync(idUsuario);
+        return permisos.Contains(codigoPermiso, StringComparer.OrdinalIgnoreCase);
     }
 }

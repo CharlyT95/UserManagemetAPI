@@ -11,6 +11,7 @@ namespace Aduanas.Aci.Usuarios.Api.DTOs.UsuarioRol
         public int IdRol { get; set; }
 
         [Required(ErrorMessage = "El nombre de usuario quien crea este registro es obligatorio")]
-        public string UsuarioCreacion { get; set; }
+        [MaxLength(50, ErrorMessage = "El nombre de usuario que crea el registro no puede exceder 50 caracteres")]
+        public string UsuarioCreacion { get; set; } = "admin";
     }
 }

@@ -21,5 +21,7 @@ namespace UserManagementAPI.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserManagementDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
+
+
     }
 }

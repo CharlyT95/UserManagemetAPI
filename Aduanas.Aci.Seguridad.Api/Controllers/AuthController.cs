@@ -1,4 +1,4 @@
-﻿using Aduanas.Aci.Seguridad.Api.DTOs;
+﻿using Aduanas.Aci.Seguridad.Api.DTOs.Auth;
 using Aduanas.Aci.Seguridad.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
