@@ -1,24 +1,36 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Aduanas.Aci.Seguridad.Api.Models;
 
-[Table("RefreshTokens")]
+[Table("RefreshToken")]
 public class RefreshToken
 {
     [Key]
+    [Column("TokenId")]
     public int IdRefreshToken { get; set; }
 
-    [Required]
-    public string Token { get; set; } = string.Empty;
-
+    [Column("IdUsuario")]
     public int IdUsuario { get; set; }
 
     [ForeignKey("IdUsuario")]
     public virtual Usuario? Usuario { get; set; }
 
-    public DateTime ExpiresAt { get; set; }
+    [Column("TokenHash")]
+    public string Token { get; set; } = string.Empty;
+
+    [Column("TokenHashReemplazo")]
+    public string? TokenHashReemplazo { get; set; }
+
+    [Column("FechaCreado")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    [Column("Expira")]
+    public DateTime ExpiresAt { get; set; }
+
+    [Column("Revocado")]
     public bool IsRevoked { get; set; } = false;
-    public string? CreatedByIp { get; set; }
+
+    [Column("FechaRevocado")]
+    public DateTime? FechaRevocado { get; set; }
 }

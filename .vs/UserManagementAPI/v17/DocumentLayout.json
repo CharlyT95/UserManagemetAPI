@@ -1,24 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\API\\SIECA\\UserManagemetAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}|..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj|c:\\users\\charl\\downloads\\aduanas_aci_seguridad_api_optimizado\\proyecto_output\\aduanas.aci.seguridad.api\\helpers\\jwthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}|..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj|c:\\users\\charl\\downloads\\aduanas_aci_seguridad_api_optimizado\\proyecto_output\\aduanas.aci.seguridad.api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}|..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj|c:\\users\\charl\\downloads\\aduanas_aci_seguridad_api_optimizado\\proyecto_output\\aduanas.aci.seguridad.api\\models\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAAB0729-3402-4CF9-AF2E-6BB9115AF651}|..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj|c:\\users\\charl\\downloads\\aduanas_aci_seguridad_api_optimizado\\proyecto_output\\aduanas.aci.seguridad.api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\charl\\onedrive\\documents\\visual studio 2022\\api\\sieca\\usermanagemetapi\\usermanagementapi\\services\\implementatios\\usuariocredencialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\services\\implementatios\\usuariocredencialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,34 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "JwtHelper.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Helpers\\JwtHelper.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Helpers\\JwtHelper.cs",
-              "ToolTip": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Helpers\\JwtHelper.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Helpers\\JwtHelper.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAYwEYAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T07:10:30.501Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RefreshToken.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Models\\RefreshToken.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Models\\RefreshToken.cs",
-              "ToolTip": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Models\\RefreshToken.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Models\\RefreshToken.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBMAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T07:09:04.986Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -97,45 +54,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:138:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\TokenService.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\TokenService.cs",
-              "ToolTip": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\TokenService.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\TokenService.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAwCcAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T07:08:10.37Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UsuarioCredencialService.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\API\\SIECA\\UserManagemetAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
-              "ToolTip": "C:\\Users\\charl\\OneDrive\\Documents\\Visual Studio 2022\\API\\SIECA\\UserManagemetAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
-              "RelativeToolTip": "UserManagementAPI\\Services\\Implementatios\\UsuarioCredencialService.cs",
-              "ViewState": "AQIAAJcAAAAAAAAAAAAAALAAAAA3AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T06:40:24.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\AuthService.cs",
-              "ToolTip": "C:\\Users\\charl\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\AuthService.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Downloads\\Aduanas_Aci_Seguridad_Api_Optimizado\\proyecto_output\\Aduanas.Aci.Seguridad.Api\\Services\\AuthService.cs",
-              "ViewState": "AQIAAKwAAAAAAAAAAADwv8AAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T06:26:56.113Z",
-              "EditorCaption": ""
             }
           ]
         }

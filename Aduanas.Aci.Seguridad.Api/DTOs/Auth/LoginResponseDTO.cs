@@ -1,4 +1,6 @@
-﻿namespace Aduanas.Aci.Seguridad.Api.DTOs.Auth;
+using Aduanas.Aci.Seguridad.Api.DTOs.Usuario;
+
+namespace Aduanas.Aci.Seguridad.Api.DTOs.Auth;
 
 public class LoginResponseDTO
 {

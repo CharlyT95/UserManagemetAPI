@@ -1,13 +1,22 @@
-﻿namespace UserManagementAPI.Models
-{
-    public class UsuarioRol
-    {
-        public int IdUsuarioRol {  get; set; } 
-        public int IdUsuario { get; set; }
-        public Usuario Usuario { get; set; } 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-        public int IdRol { get; set; }
-        public Rol Rol { get; set; }
- 
-    }
+namespace Aduanas.Aci.Seguridad.Api.Models;
+
+public class UsuarioRol
+{
+    [Key]
+    public int IdUsuarioRol { get; set; }
+
+    public int IdUsuario { get; set; }
+
+    [ForeignKey("IdUsuario")]
+    public virtual Usuario? Usuario { get; set; }
+
+    public int IdRol { get; set; }
+
+    [ForeignKey("IdRol")]
+    public virtual Rol? Rol { get; set; }
+
+    public bool Activo {  get; set; }
 }
