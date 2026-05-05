@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "Aduanas.Aci.Audit.Api.Controllers.AuditLogController",
+    "Method": "Registrar",
+    "RelativePath": "api/AuditLog",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Aduanas.Aci.Audit.Api.DTOs.AuditEventDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Audit.Api.Controllers.AuditLogController",
+    "Method": "Health",
+    "RelativePath": "api/AuditLog/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Aduanas.Aci.Audit.Api.Controllers.AuditLogController",
+    "Method": "RegistrarLote",
+    "RelativePath": "api/AuditLog/lote",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dtos",
+        "Type": "System.Collections.Generic.List\u00601[[Aduanas.Aci.Audit.Api.DTOs.AuditEventDto, Aduanas.Aci.Audit.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

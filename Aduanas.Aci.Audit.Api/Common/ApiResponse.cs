@@ -1,0 +1,15 @@
+﻿namespace Aduanas.Aci.Audit.Api.Common
+{
+    public class ApiResponse<T>
+    {
+        public bool Success { get; set; }
+        public T? Data { get; set; }
+        public string Message { get; set; } = string.Empty;
+
+        public static ApiResponse<T> Ok(T data, string message = "Acción exitosa.") =>
+            new() { Success = true, Data = data, Message = message };
+
+        public static ApiResponse<T> Fail(string message) =>
+            new() { Success = false, Data = default, Message = message };
+    }
+}
