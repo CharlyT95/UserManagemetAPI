@@ -1,6 +1,7 @@
 ﻿using Aduanas.Aci.Audit.Api.Common.Exceptions;
 using System.Net;
 using System.Text.Json;
+using FluentValidation;
 
 namespace Aduanas.Aci.Audit.Api.Middleware
 {
@@ -31,7 +32,11 @@ namespace Aduanas.Aci.Audit.Api.Middleware
         {
             var (statusCode, message) = exception switch
             {
-                ValidationException => (HttpStatusCode.BadRequest, exception.Message),
+                FluentValidation.ValidationException fluentEx => (
+                   HttpStatusCode.BadRequest,
+                   string.Join(" | ", fluentEx.Errors.Select(e => e.ErrorMessage))
+               ),
+                Common.Exceptions.ValidationException => (HttpStatusCode.BadRequest, exception.Message),
                 NotFoundException => (HttpStatusCode.NotFound, exception.Message),
                 UnauthorizedException => (HttpStatusCode.Unauthorized, exception.Message),
                 _ => (HttpStatusCode.InternalServerError, "Ocurrió un error interno en el servidor.")

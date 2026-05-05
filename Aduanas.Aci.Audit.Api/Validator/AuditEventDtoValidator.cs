@@ -6,13 +6,13 @@ namespace Aduanas.Aci.Audit.Api.Validator
     public class AuditEventDtoValidator : AbstractValidator<AuditEventDto>
     {
         private static readonly string[] _accionesValidas =
-            { "CREATE", "READ", "UPDATE", "DELETE", "LOGIN", "LOGOUT", "ERROR" };
+            { "CREACIÓN", "LECTURA", "MODIFICACIÓN", "ELIMINACIÓN", "INICIO DE SESIÓN", "CIERRE DE SESIÓN", "ERROR" };
 
         public AuditEventDtoValidator()
         {
-            RuleFor(x => x.UsuarioId)
+            RuleFor(x => x.IdUsuario)
                 .GreaterThan(0)
-                .WithMessage("UsuarioId debe ser mayor a 0.");
+                .WithMessage("El Identificador de usuario debe de ser mayor a 0");
 
             RuleFor(x => x.Modulo)
                 .NotEmpty()
@@ -38,9 +38,9 @@ namespace Aduanas.Aci.Audit.Api.Validator
                 .MaximumLength(100)
                 .WithMessage("Tabla no puede superar 100 caracteres.");
 
-            RuleFor(x => x.RegistroId)
+            RuleFor(x => x.IdRegistro)
                 .NotEmpty()
-                .WithMessage("El campo RegistroId es requerido.")
+                .WithMessage("El campo IdRegistro es requerido.")
                 .MaximumLength(50)
                 .WithMessage("RegistroId no puede superar 50 caracteres.");
 

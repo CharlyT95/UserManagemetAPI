@@ -1,12 +1,12 @@
 ﻿
 CREATE TABLE [dbo].[AuditoriaLog] (
     [IdLog]         BIGINT          NOT NULL    IDENTITY(1,1),
-    [UsuarioId]     INT             NOT NULL,
+    [IdUsuario]     INT             NOT NULL,
     [Modulo]        NVARCHAR(50)    NULL,
     [Servicio]      NVARCHAR(100)   NOT NULL,
     [TipoAccion]    NVARCHAR(20)    NOT NULL,
     [Tabla]         NVARCHAR(100)   NULL,
-    [RegistroId]    NVARCHAR(50)    NULL,
+    [IdRegistro]    NVARCHAR(50)    NULL,
     [Peticion]      NVARCHAR(2000)  NULL,
     [Respuesta]     NVARCHAR(2000)  NULL,
     [ValorAnterior] NVARCHAR(MAX)   NULL,
@@ -19,10 +19,14 @@ CREATE TABLE [dbo].[AuditoriaLog] (
 );
 GO
 
+ALTER TABLE AuditoriaLog ADD CONSTRAINT AuditoriaLog_Usuario
+    FOREIGN KEY (IdUsuario)
+    REFERENCES Usuario (IdUsuario);
+
 -- Búsquedas 
 --por usuario
-CREATE NONCLUSTERED INDEX [IX_AuditoriaLog_UsuarioId]
-    ON [dbo].[AuditoriaLog] ([UsuarioId] ASC);
+CREATE NONCLUSTERED INDEX [IX_AuditoriaLog_IdUsuario]
+    ON [dbo].[AuditoriaLog] ([IdUsuario] ASC);
 GO
 
 -- por fecha (reportes por rango de fechas)
@@ -36,6 +40,6 @@ CREATE NONCLUSTERED INDEX [IX_AuditoriaLog_Modulo_TipoAccion]
 GO
 
 -- por tabla y registro específico
-CREATE NONCLUSTERED INDEX [IX_AuditoriaLog_Tabla_RegistroId]
-    ON [dbo].[AuditoriaLog] ([Tabla] ASC, [RegistroId] ASC);
+CREATE NONCLUSTERED INDEX [IX_AuditoriaLog_Tabla_IdRegistro]
+    ON [dbo].[AuditoriaLog] ([Tabla] ASC, [IdRegistro] ASC);
 GO

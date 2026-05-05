@@ -9,6 +9,7 @@ namespace Aduanas.Aci.Audit.Api.Data
             : base(options) { }
 
         public DbSet<AuditoriaLog> AuditoriaLogs { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

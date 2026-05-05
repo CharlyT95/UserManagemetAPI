@@ -1,9 +1,11 @@
-﻿using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
+﻿using Aduanas.Aci.Usuarios.Api.Audit;
+using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
 using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
 using Aduanas.Aci.Usuarios.Api.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using UserManagementAPI.Data;
 using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Models;
@@ -14,30 +16,45 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
     {
         private readonly UserManagementDbContext _context;
         private readonly IMapper _mapper;
+        private readonly AuditoriaClient _auditoria;    
+        private readonly IHttpContextAccessor _httpContext;
 
-        public UsuarioService(UserManagementDbContext context, IMapper mapper)
+        public UsuarioService(UserManagementDbContext context, IMapper mapper, AuditoriaClient auditoria, IHttpContextAccessor httpContext)
         {
             _context = context;
             _mapper = mapper;
+            _auditoria = auditoria;
+            _httpContext = httpContext;
         }
 
         public async Task<UsuarioDTO> CreateUserAsync(CreateUsuarioDTO usuario)
         {
             var data = _mapper.Map<Usuario>(usuario);
+
             var validarCorreo = await _context.Usuario.AnyAsync(c => c.CorreoElectronico == usuario.CorreoElectronico);
             var validarLogin = await _context.Usuario.AnyAsync(c => c.UsuarioLogin == usuario.UsuarioLogin);
 
             if (validarCorreo)
                 throw new Exception(UsuarioErrors.CorreoDuplicado);
-
             if (validarLogin)
                 throw new Exception(UsuarioErrors.LoginUsuarioDuplicado);
 
-            // Auditoría
             data.FechaCreacion = DateTime.Now;
-
             _context.Usuario.Add(data);
             await _context.SaveChangesAsync();
+
+            // 👇 Auditoría — después de guardar exitosamente
+            _auditoria.Registrar(new AuditEvent
+            {
+                IdUsuario = 1,
+                Modulo = "GestionUsuarios",
+                Servicio = "UsuarioService",
+                TipoAccion = "CREACIÓN",
+                Tabla = "Usuario",
+                IdRegistro = data.IdUsuario.ToString(),
+                ValorNuevo = JsonSerializer.Serialize(usuario),
+                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
+            });
 
             return _mapper.Map<UsuarioDTO>(data);
         }

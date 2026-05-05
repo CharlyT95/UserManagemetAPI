@@ -1,8 +1,10 @@
-﻿using Aduanas.Aci.Audit.Api.Data;
+﻿using Aduanas.Aci.Audit.Api.Common;
+using Aduanas.Aci.Audit.Api.Data;
 using Aduanas.Aci.Audit.Api.DTOs;
 using Aduanas.Aci.Audit.Api.Models;
 using AutoMapper;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Aduanas.Aci.Audit.Api.Services
@@ -26,62 +28,57 @@ namespace Aduanas.Aci.Audit.Api.Services
             _logger = logger;
         }
 
-        public async Task<AuditEventResponseDto> GuardarAsync(AuditEventDto dto)
+        public async Task<ApiResponse<AuditEventResponseDto>> GuardarAsync(AuditEventDto dto)
         {
-            // Validación con FluentValidation
-            var resultado = await _validator.ValidateAsync(dto);
-            if (!resultado.IsValid)
-            {
-                var errores = string.Join(" | ", resultado.Errors.Select(e => e.ErrorMessage));
-                throw new ValidationException(errores);
-            }
+            await _validator.ValidateAndThrowAsync(dto);
 
-            // Mapeo DTO → Entidad
+            var usuario = await _context.Usuario.AnyAsync(u => u.IdUsuario == dto.IdUsuario && u.Activo);
+            if (!usuario)
+                return ApiResponse<AuditEventResponseDto>.Fail("Usuario no encontrado.");
+
             var log = _mapper.Map<AuditoriaLog>(dto);
-            log.FechaEvento = DateTime.UtcNow;
+            log.FechaEvento = DateTime.Now;
+            log.TipoAccion = dto.TipoAccion.ToUpper();
 
             _context.AuditoriaLogs.Add(log);
             await _context.SaveChangesAsync();
 
-            _logger.LogInformation(
-                "Log registrado: IdLog={IdLog} | Tabla={Tabla} | Accion={Accion}",
-                log.IdLog, log.Tabla, log.TipoAccion
+            return ApiResponse<AuditEventResponseDto>.Ok(
+                _mapper.Map<AuditEventResponseDto>(log),
+                "Evento registrado correctamente."
             );
-
-            // Mapeo Entidad → DTO de respuesta
-            return _mapper.Map<AuditEventResponseDto>(log);
         }
 
-        public async Task<List<AuditEventResponseDto>> GuardarLoteAsync(List<AuditEventDto> dtos)
-        {
-            var erroresGlobales = new List<string>();
+        //public async Task<List<AuditEventResponseDto>> GuardarLoteAsync(List<AuditEventDto> dtos)
+        //{
+        //    var erroresGlobales = new List<string>();
 
-            for (int i = 0; i < dtos.Count; i++)
-            {
-                var resultado = await _validator.ValidateAsync(dtos[i]);
-                if (!resultado.IsValid)
-                {
-                    var errores = string.Join(" | ", resultado.Errors.Select(e => e.ErrorMessage));
-                    erroresGlobales.Add($"[Evento {i + 1}]: {errores}");
-                }
-            }
+        //    for (int i = 0; i < dtos.Count; i++)
+        //    {
+        //        var resultado = await _validator.ValidateAsync(dtos[i]);
+        //        if (!resultado.IsValid)
+        //        {
+        //            var errores = string.Join(" | ", resultado.Errors.Select(e => e.ErrorMessage));
+        //            erroresGlobales.Add($"[Evento {i + 1}]: {errores}");
+        //        }
+        //    }
 
-            if (erroresGlobales.Count > 0)
-                throw new ValidationException(string.Join(" || ", erroresGlobales));
+        //    if (erroresGlobales.Count > 0)
+        //        throw new ValidationException(string.Join(" || ", erroresGlobales));
 
-            var logs = dtos.Select(dto =>
-            {
-                var log = _mapper.Map<AuditoriaLog>(dto);
-                log.FechaEvento = DateTime.UtcNow;
-                return log;
-            }).ToList();
+        //    var logs = dtos.Select(dto =>
+        //    {
+        //        var log = _mapper.Map<AuditoriaLog>(dto);
+        //        log.FechaEvento = DateTime.UtcNow;
+        //        return log;
+        //    }).ToList();
 
-            _context.AuditoriaLogs.AddRange(logs);
-            await _context.SaveChangesAsync();
+        //    _context.AuditoriaLogs.AddRange(logs);
+        //    await _context.SaveChangesAsync();
 
-            _logger.LogInformation("Lote de {Count} logs registrados.", logs.Count);
+        //    _logger.LogInformation("Lote de {Count} logs registrados.", logs.Count);
 
-            return _mapper.Map<List<AuditEventResponseDto>>(logs);
-        }
+        //    return _mapper.Map<List<AuditEventResponseDto>>(logs);
+        //}
     }
 }

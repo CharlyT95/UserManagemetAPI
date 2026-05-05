@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aduanas.Aci.Usuarios.Api", "UserManagementAPI\Aduanas.Aci.Usuarios.Api.csproj", "{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aduanas.Aci.Seguridad.Api", "..\..\..\UserManagementAPI\UserManagementAPI\Aduanas.Aci.Seguridad.Api\Aduanas.Aci.Seguridad.Api.csproj", "{4ACA9585-EAD2-4944-A235-C276714BFB68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aduanas.Aci.Audit.Api", "Aduanas.Aci.Audit.Api\Aduanas.Aci.Audit.Api.csproj", "{D3706A95-0EBB-4848-8439-5264CA4AE9C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aduanas.Aci.Audit.Api", "Aduanas.Aci.Audit.Api\Aduanas.Aci.Audit.Api.csproj", "{D3706A95-0EBB-4848-8439-5264CA4AE9C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aduanas.Aci.Seguridad.Api", "Aduanas.Aci.Seguridad.Api\Aduanas.Aci.Seguridad.Api.csproj", "{13F87101-0516-4AC6-BCEA-7ECEB8C70984}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ACA9585-EAD2-4944-A235-C276714BFB68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ACA9585-EAD2-4944-A235-C276714BFB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ACA9585-EAD2-4944-A235-C276714BFB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ACA9585-EAD2-4944-A235-C276714BFB68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3706A95-0EBB-4848-8439-5264CA4AE9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3706A95-0EBB-4848-8439-5264CA4AE9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3706A95-0EBB-4848-8439-5264CA4AE9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3706A95-0EBB-4848-8439-5264CA4AE9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13F87101-0516-4AC6-BCEA-7ECEB8C70984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13F87101-0516-4AC6-BCEA-7ECEB8C70984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13F87101-0516-4AC6-BCEA-7ECEB8C70984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13F87101-0516-4AC6-BCEA-7ECEB8C70984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

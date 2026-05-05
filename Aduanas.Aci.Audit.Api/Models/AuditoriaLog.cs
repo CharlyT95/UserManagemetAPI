@@ -10,7 +10,7 @@ namespace Aduanas.Aci.Audit.Api.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdLog { get; set; }
 
-        public int UsuarioId { get; set; }
+        public int IdUsuario { get; set; }
 
         [MaxLength(50)]
         public string? Modulo { get; set; }
@@ -25,7 +25,7 @@ namespace Aduanas.Aci.Audit.Api.Models
         public string? Tabla { get; set; }
 
         [MaxLength(50)]
-        public string? RegistroId { get; set; }
+        public string? IdRegistro { get; set; }
 
         [MaxLength(2000)]
         public string? Peticion { get; set; }

@@ -1,13 +1,11 @@
 using Aduanas.Aci.Audit.Api.Data;
 using Aduanas.Aci.Audit.Api.DTOs;
 using Aduanas.Aci.Audit.Api.Mappings;
+using Aduanas.Aci.Audit.Api.Middleware;
 using Aduanas.Aci.Audit.Api.Services;
 using Aduanas.Aci.Audit.Api.Validator;
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,7 +73,7 @@ builder.Services.AddSwaggerGen();
 //});
 
 var app = builder.Build();
-
+app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
