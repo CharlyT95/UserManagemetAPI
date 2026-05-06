@@ -1,5 +1,6 @@
 ﻿using Aduanas.Aci.Usuarios.Api.DTOs;
 using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.DTOs.Permiso;
 using UserManagementAPI.Helpers;
@@ -8,6 +9,7 @@ namespace UserManagementAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PermisoController : ControllerBase
     {
         private readonly PermisoService _permisoService;

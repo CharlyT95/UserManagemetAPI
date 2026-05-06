@@ -1,24 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\carlostorres\\documents\\varios\\bid\\usermanagemetapi\\usermanagementapi\\audit\\auditevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\audit\\auditevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\carlostorres\\documents\\varios\\bid\\usermanagemetapi\\usermanagementapi\\services\\implementatios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\services\\implementatios\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\carlostorres\\documents\\varios\\bid\\usermanagemetapi\\usermanagementapi\\audit\\auditdispatcherworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\audit\\auditdispatcherworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|c:\\users\\carlostorres\\documents\\varios\\bid\\usermanagemetapi\\usermanagementapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30FAFFD4-DE96-4D33-BC32-6DACD64425F3}|UserManagementAPI\\Aduanas.Aci.Usuarios.Api.csproj|solutionrelative:usermanagementapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\charl\\OneDrive\\Escritorio\\BID\\UserManagemetAPI\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,63 +9,51 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuditEvent.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Audit\\AuditEvent.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Audit\\AuditEvent.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Audit\\AuditEvent.cs",
-              "RelativeToolTip": "UserManagementAPI\\Audit\\AuditEvent.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAtwBEAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T22:59:14.533Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuditDispatcherWorker.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Audit\\AuditDispatcherWorker.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Audit\\AuditDispatcherWorker.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Audit\\AuditDispatcherWorker.cs",
-              "RelativeToolTip": "UserManagementAPI\\Audit\\AuditDispatcherWorker.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCcAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T22:54:29.234Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Program.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Program.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Program.cs",
-              "RelativeToolTip": "UserManagementAPI\\Program.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAgwB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T22:47:23.956Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
-              "ToolTip": "C:\\Users\\CarlosTorres\\Documents\\Varios\\BID\\UserManagemetAPI\\UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
-              "RelativeToolTip": "UserManagementAPI\\Services\\Implementatios\\UsuarioService.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAQwDYAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-05T22:44:57.704Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             }
           ]
         }

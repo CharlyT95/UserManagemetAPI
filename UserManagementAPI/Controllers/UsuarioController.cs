@@ -1,6 +1,7 @@
 ﻿
 using Aduanas.Aci.Usuarios.Api.DTOs;
 using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Helpers;
@@ -9,6 +10,7 @@ namespace UserManagementAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly UsuarioService _userService;

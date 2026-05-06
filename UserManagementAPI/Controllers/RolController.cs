@@ -1,5 +1,6 @@
 ﻿using Aduanas.Aci.Usuarios.Api.DTOs;
 using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.DTOs.Rol;
 using UserManagementAPI.Helpers;
@@ -9,6 +10,7 @@ namespace UserManagementAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RolController : ControllerBase
     {
         private readonly RolService _rolService;

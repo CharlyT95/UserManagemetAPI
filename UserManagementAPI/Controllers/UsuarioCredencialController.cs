@@ -1,5 +1,6 @@
 ﻿using Aduanas.Aci.Usuarios.Api.DTOs.UsuarioCredencial;
 using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementAPI.Helpers;
 
@@ -7,6 +8,7 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
 {
     [ApiController]
     [Route("api/")]
+    [Authorize]
     public class UsuarioCredencialController : ControllerBase
     {
 
