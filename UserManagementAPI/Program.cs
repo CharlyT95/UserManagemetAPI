@@ -64,7 +64,8 @@ builder.Services.AddSingleton(
 //AUDITORÍA
 builder.Services.AddHttpClient("AuditoriaClient", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5271");
+    client.BaseAddress = new Uri(
+        builder.Configuration["ServiciosExternos:SeguridadApi"]!);
     client.Timeout = TimeSpan.FromSeconds(30);
 });
 

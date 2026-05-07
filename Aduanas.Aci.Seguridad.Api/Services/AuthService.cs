@@ -88,7 +88,8 @@ public class AuthService : IAuthService
         // Guardar refresh token
         await _tokenService.SaveRefreshTokenAsync(
             idUsuario: usuario.IdUsuario,
-            token: refreshToken,
+            refreshToken: refreshToken,  
+            accessToken: accessToken,  
             expiration: refreshExp,
             ip: ip
         );
@@ -163,7 +164,8 @@ public class AuthService : IAuthService
         // 9. Guardar nuevo refresh token
         await _tokenService.SaveRefreshTokenAsync(
             idUsuario: usuario.IdUsuario,
-            token: refreshToken,
+            refreshToken: refreshToken,  
+            accessToken: accessToken,  
             expiration: refreshExp,
             ip: null
         );

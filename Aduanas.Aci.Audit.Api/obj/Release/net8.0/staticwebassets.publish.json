@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "u/yzFhszEUFmUmJ0ZHJdiqfjacrbT6lyG3M9zA/VKm0=",
+  "Source": "Aduanas.Aci.Audit.Api",
+  "BasePath": "_content/Aduanas.Aci.Audit.Api",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

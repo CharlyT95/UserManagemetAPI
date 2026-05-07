@@ -43,7 +43,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _context.Usuario.Add(data);
             await _context.SaveChangesAsync();
 
-            // 👇 Auditoría — después de guardar exitosamente
+            //Auditoría
             _auditoria.Registrar(new AuditEvent
             {
                 IdUsuario = 1,

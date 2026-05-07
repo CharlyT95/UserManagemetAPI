@@ -6,7 +6,8 @@ namespace Aduanas.Aci.Seguridad.Api.Services;
 
 public interface ITokenService
 {
-    Task<RefreshToken> SaveRefreshTokenAsync(int idUsuario, string token, DateTime expiration, string? ip);
+    Task<RefreshToken> SaveRefreshTokenAsync(
+        int idUsuario, string refreshToken, string accessToken, DateTime expiration, string? ip);
     Task<RefreshToken?> GetValidRefreshTokenAsync(string token);
     Task RevokeRefreshTokenAsync(string token);
 }
@@ -18,40 +19,39 @@ public class TokenService : ITokenService
     public TokenService(AppDbContext db) => _db = db;
 
     public async Task<RefreshToken> SaveRefreshTokenAsync(
-        int idUsuario, string token, DateTime expiration, string? ip)
+        int idUsuario, string refreshToken, string accessToken, DateTime expiration, string? ip)
     {
-        var refreshToken = new RefreshToken
+        var entity = new RefreshToken
         {
             IdUsuario = idUsuario,
-            Token = token,       
-            TokenHashReemplazo = null,
-            ExpiresAt = expiration,  
-            CreatedAt = DateTime.UtcNow, 
-            IsRevoked = false,
+            TokenHash = accessToken,
+            TokenHashReemplazo = refreshToken,   
+            Expira = expiration,
+            FechaCreado = DateTime.Now,
+            Revocado = false,
             FechaRevocado = null
         };
-
-        _db.RefreshToken.Add(refreshToken);
+        _db.RefreshToken.Add(entity);
         await _db.SaveChangesAsync();
-        return refreshToken;
+        return entity;
     }
 
     public async Task<RefreshToken?> GetValidRefreshTokenAsync(string token)
         => await _db.RefreshToken
             .AsNoTracking()
             .FirstOrDefaultAsync(r =>
-                r.Token == token &&        
-                !r.IsRevoked &&           
-                r.ExpiresAt > DateTime.UtcNow); 
+                r.TokenHash == token &&        
+                !r.Revocado &&           
+                r.Expira > DateTime.Now); 
 
     public async Task RevokeRefreshTokenAsync(string token)
     {
         var rt = await _db.RefreshToken
-            .FirstOrDefaultAsync(r => r.Token == token);
+            .FirstOrDefaultAsync(r => r.TokenHash == token);
 
         if (rt is not null)
         {
-            rt.IsRevoked = true;            
+            rt.Revocado = true;            
             rt.FechaRevocado = DateTime.UtcNow; 
             await _db.SaveChangesAsync();
         }

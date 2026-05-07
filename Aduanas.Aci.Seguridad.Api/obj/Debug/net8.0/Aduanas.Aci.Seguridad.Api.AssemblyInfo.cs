@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aduanas.Aci.Seguridad.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+176d2801c26754f84b8a410540ec89cffad5c519")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c80338cb26e3a120b8dea16ed679afd6f0569e21")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aduanas.Aci.Seguridad.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aduanas.Aci.Seguridad.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

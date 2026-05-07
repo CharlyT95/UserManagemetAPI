@@ -59,7 +59,7 @@ public class AppDbContext : DbContext
 
         // Índice en Token para búsquedas rápidas
         modelBuilder.Entity<RefreshToken>()
-            .HasIndex(rt => rt.Token)
+            .HasIndex(rt => rt.TokenHash)
             .IsUnique();
 
         modelBuilder.Entity<RefreshToken>()
@@ -70,7 +70,7 @@ public class AppDbContext : DbContext
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<RefreshToken>()
-            .HasIndex(rt => rt.Token)
+            .HasIndex(rt => rt.TokenHash)
             .IsUnique();
     }
 }

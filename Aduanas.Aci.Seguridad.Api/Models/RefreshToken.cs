@@ -17,19 +17,19 @@ public class RefreshToken
     public virtual Usuario? Usuario { get; set; }
 
     [Column("TokenHash")]
-    public string Token { get; set; } = string.Empty;
+    public string TokenHash { get; set; } = string.Empty;
 
     [Column("TokenHashReemplazo")]
     public string? TokenHashReemplazo { get; set; }
 
     [Column("FechaCreado")]
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime FechaCreado { get; set; } = DateTime.UtcNow;
 
     [Column("Expira")]
-    public DateTime ExpiresAt { get; set; }
+    public DateTime Expira { get; set; }
 
     [Column("Revocado")]
-    public bool IsRevoked { get; set; } = false;
+    public bool Revocado { get; set; } = false;
 
     [Column("FechaRevocado")]
     public DateTime? FechaRevocado { get; set; }
