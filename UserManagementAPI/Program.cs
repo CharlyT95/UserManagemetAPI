@@ -9,6 +9,7 @@ using UserManagementAPI.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Aduanas.Aci.Usuarios.Api.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,7 @@ builder.Services.AddScoped<UsuarioRolService>();
 builder.Services.AddScoped<RolPermisoService>();
 builder.Services.AddScoped<UsuarioCredencialService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<JwtHelper>();
 
 
 

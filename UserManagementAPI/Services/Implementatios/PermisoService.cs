@@ -1,9 +1,12 @@
-﻿using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
+﻿using Aduanas.Aci.Usuarios.Api.Audit;
+using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
 using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
 using Aduanas.Aci.Usuarios.Api.Extensions;
+using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using UserManagementAPI.Data;
 using UserManagementAPI.DTOs.Permiso;
 using UserManagementAPI.Helpers;
@@ -15,11 +18,17 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
     {
         private readonly UserManagementDbContext _context;
         private readonly IMapper _mapper;
+        private readonly AuditoriaClient _auditoria;
+        private readonly IHttpContextAccessor _httpContext;
+        private readonly JwtHelper _jwtHelper;
 
-        public PermisoService(UserManagementDbContext context, IMapper mapper)
+        public PermisoService(UserManagementDbContext context, IMapper mapper, AuditoriaClient auditoria, IHttpContextAccessor httpContext, JwtHelper jwtHelper)
         {
             _context = context;
             _mapper = mapper;
+            _auditoria = auditoria;
+            _httpContext = httpContext;
+            _jwtHelper = jwtHelper;
         }
 
         public async Task<PermisoDTO> CreatePermisoAsync(CreatePermisoDTO permiso)
@@ -35,6 +44,19 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.Permiso.Add(data);
             await _context.SaveChangesAsync();
+
+            _auditoria.Registrar(new AuditEvent
+            {
+                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
+                Modulo = "GestionUsuarios",
+                Servicio = "Permiso",
+                TipoAccion = TipoAccionEnum.Create,
+                Tabla = "Permiso",
+                IdRegistro = data.IdPermiso.ToString(),
+                ValorNuevo = JsonSerializer.Serialize(permiso),
+                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
+            });
+
             return _mapper.Map<PermisoDTO>(data);
         }
 
@@ -58,6 +80,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             if (data == null)
                 throw new Exception("Permiso no encontrado");
 
+            var valorAnterior = JsonSerializer.Serialize(data);
+
             var validarCodigo = await _context.Permiso.AnyAsync(p => p.IdPermiso != permiso.IdPermiso && p.CodigoPermiso.Trim().Replace(" ", "").ToLower() == nombreNormalizado && p.Activo);
             if (validarCodigo)
                 throw new Exception(PermisoErrors.CodigoPermisoDuplicado);
@@ -69,6 +93,20 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.Permiso.Update(data);
             await _context.SaveChangesAsync();
+
+            _auditoria.Registrar(new AuditEvent
+            {
+                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
+                Modulo = "GestionUsuarios",
+                Servicio = "Permiso",
+                TipoAccion = TipoAccionEnum.Update,
+                Tabla = "Permiso",
+                IdRegistro = data.IdPermiso.ToString(),
+                ValorAnterior = JsonSerializer.Serialize(valorAnterior),
+                ValorNuevo = JsonSerializer.Serialize(permiso),
+                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
+            });
+
             return _mapper.Map<PermisoDTO>(data);
 
         }
@@ -92,6 +130,19 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             //Auditoria
             data.Activo = activo;
+
+            _auditoria.Registrar(new AuditEvent
+            {
+                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
+                Modulo = "GestionUsuarios",
+                Servicio = "Permiso",
+                TipoAccion = TipoAccionEnum.Update,
+                Tabla = "Permiso",
+                IdRegistro = data.IdPermiso.ToString(),
+                ValorAnterior = JsonSerializer.Serialize(true),
+                ValorNuevo = JsonSerializer.Serialize(false),
+                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
+            });
 
             await _context.SaveChangesAsync();
             return true;

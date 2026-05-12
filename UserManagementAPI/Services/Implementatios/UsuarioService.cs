@@ -2,6 +2,7 @@
 using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
 using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
 using Aduanas.Aci.Usuarios.Api.Extensions;
+using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -18,13 +19,15 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         private readonly IMapper _mapper;
         private readonly AuditoriaClient _auditoria;    
         private readonly IHttpContextAccessor _httpContext;
+        private readonly JwtHelper _jwtHelper;
 
-        public UsuarioService(UserManagementDbContext context, IMapper mapper, AuditoriaClient auditoria, IHttpContextAccessor httpContext)
+        public UsuarioService(UserManagementDbContext context, IMapper mapper, AuditoriaClient auditoria, IHttpContextAccessor httpContext, JwtHelper jwtHelper)
         {
             _context = context;
             _mapper = mapper;
             _auditoria = auditoria;
             _httpContext = httpContext;
+            _jwtHelper = jwtHelper;
         }
 
         public async Task<UsuarioDTO> CreateUserAsync(CreateUsuarioDTO usuario)
@@ -46,10 +49,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             //Auditoría
             _auditoria.Registrar(new AuditEvent
             {
-                IdUsuario = 1,
+                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
                 Modulo = "GestionUsuarios",
-                Servicio = "UsuarioService",
-                TipoAccion = "CREACIÓN",
+                Servicio = "Usuario",
+                TipoAccion = TipoAccionEnum.Create,
                 Tabla = "Usuario",
                 IdRegistro = data.IdUsuario.ToString(),
                 ValorNuevo = JsonSerializer.Serialize(usuario),
@@ -84,6 +87,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             if (data == null)
                 throw new Exception(UsuarioErrors.UsuarioNoEncontrado);
 
+            var valorAnterior = JsonSerializer.Serialize(data);
+
             var usuarioDuplicado = await _context.Usuario
                  .Where(p => p.IdUsuario != usuario.IdUsuario && p.Activo)
                  .Select(p => new
@@ -105,12 +110,24 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             }
 
             _mapper.Map(usuario, data);
-
-            //Auditoria
             data.FechaModificacion = DateTime.Now;
 
             _context.Usuario.Update(data);
             await _context.SaveChangesAsync();
+
+            //Auditoría
+            _auditoria.Registrar(new AuditEvent
+            {
+                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
+                Modulo = "GestionUsuarios",
+                Servicio = "Usuario",
+                TipoAccion = TipoAccionEnum.Update,
+                Tabla = "Usuario",
+                IdRegistro = data.IdUsuario.ToString(),
+                ValorAnterior = JsonSerializer.Serialize(valorAnterior),
+                ValorNuevo = JsonSerializer.Serialize(usuario),
+                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
+            });
 
             return _mapper.Map<UsuarioDTO>(data);
         }
@@ -134,6 +151,19 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             //Auditoria
             data.Activo = activo;
+
+            _auditoria.Registrar(new AuditEvent
+            {
+                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
+                Modulo = "GestionUsuarios",
+                Servicio = "Usuario",
+                TipoAccion = TipoAccionEnum.Update,
+                Tabla = "Usuario",
+                IdRegistro = data.IdUsuario.ToString(),
+                ValorAnterior = JsonSerializer.Serialize(true),
+                ValorNuevo = JsonSerializer.Serialize(false),
+                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
+            });
 
             await _context.SaveChangesAsync();
             return true;
