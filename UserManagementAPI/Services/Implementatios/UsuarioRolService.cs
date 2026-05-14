@@ -1,10 +1,14 @@
-﻿using Aduanas.Aci.Usuarios.Api.DTOs.UsuarioRol;
+﻿using Aduanas.Aci.Usuarios.Api.Audit;
+using Aduanas.Aci.Usuarios.Api.DTOs.UsuarioRol;
 using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
+using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using UserManagementAPI.Data;
 using UserManagementAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
@@ -12,13 +16,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
     {
         private readonly UserManagementDbContext _context;
         private readonly IMapper _mapper;
-
-        public UsuarioRolService(UserManagementDbContext context, IMapper mapper)
+        private readonly RegistroAuditoria _registroAuditoria;
+        public UsuarioRolService(UserManagementDbContext context, IMapper mapper, RegistroAuditoria registroAuditoria)
         {
             _context = context;
             _mapper = mapper;
+            _registroAuditoria = registroAuditoria;
         }
-
         public async Task<UsuarioRolDTO> CreateUsuarioRol(CreateUsuarioRolDTO dto)
         {
             var usuario = await _context.Usuario
@@ -52,6 +56,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _context.UsuarioRol.Add(entity);
             await _context.SaveChangesAsync();
 
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("UsuarioRol", TipoAccionEnum.Create, "UsuarioRol", entity.IdUsuarioRol.ToString(), null, JsonSerializer.Serialize(dto));
+
             return new UsuarioRolDTO
             {
                 usuario = $"{usuario.Nombres} {usuario.Apellidos}",
@@ -67,6 +75,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             var getRoles = await _context.UsuarioRol
                 .Include(u => u.Usuario).Include(r => r.Rol)
                 .Where(ur => ur.IdUsuario == idUsuario && ur.Activo && ur.Rol.Activo).ProjectTo<UsuarioRolGetDTO>(_mapper.ConfigurationProvider).ToListAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("UsuarioRol", TipoAccionEnum.Read, "UsuarioRol", JsonSerializer.Serialize(getRoles), null, null);
+
             return getRoles;
 
         }
@@ -90,6 +102,9 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             //Auditoria
             data.Activo = activo;
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("UsuarioRol", TipoAccionEnum.Delete, "UsuarioRol", data.IdUsuarioRol.ToString(), JsonSerializer.Serialize(true), JsonSerializer.Serialize(false));
 
             await _context.SaveChangesAsync();
             return true;

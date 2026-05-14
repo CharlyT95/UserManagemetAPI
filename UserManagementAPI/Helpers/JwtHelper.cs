@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.JsonWebTokens;
+using System.Security.Claims;
 
 namespace Aduanas.Aci.Usuarios.Api.Helpers
 {
@@ -14,9 +15,12 @@ namespace Aduanas.Aci.Usuarios.Api.Helpers
 
         public int ObtenerUsuarioId()
         {
-            var claim = _httpContext.HttpContext?.User
-                            .FindFirst(JwtRegisteredClaimNames.Sub)?.Value
-                        ?? "0";
+            var claim = _httpContext.HttpContext?.User?.FindFirst(JwtRegisteredClaimNames.Sub)?.Value
+         ?? _httpContext.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value
+         ?? _httpContext.HttpContext?.User?.FindFirst("sub")?.Value
+         ?? "0";
+
+
             return int.TryParse(claim, out var id) ? id : 0;
         }
     }

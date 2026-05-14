@@ -1,12 +1,16 @@
-﻿using Aduanas.Aci.Usuarios.Api.Errors.Rol;
+﻿using Aduanas.Aci.Usuarios.Api.Audit;
+using Aduanas.Aci.Usuarios.Api.Errors.Rol;
 using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
 using Aduanas.Aci.Usuarios.Api.Extensions;
+using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using UserManagementAPI.Data;
 using UserManagementAPI.DTOs.Rol;
 using UserManagementAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
@@ -14,22 +18,32 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
     {
         private readonly UserManagementDbContext _context;
         private readonly IMapper _mapper;
+        private readonly RegistroAuditoria _registroAuditoria;
 
-        public RolService(UserManagementDbContext context, IMapper mapper)
+        public RolService(UserManagementDbContext context, IMapper mapper, RegistroAuditoria registroAuditoria)
         {
             _context = context;
             _mapper = mapper;
+            _registroAuditoria = registroAuditoria;
         }
 
         public async Task<List<RolDTO>> getRoles()
         {
             var roles = await _context.Rol.Where(rol => rol.Activo == true).OrderBy(r => r.IdRol).ProjectTo<RolDTO>(_mapper.ConfigurationProvider).ToListAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Rol", TipoAccionEnum.Read, "Rol", JsonSerializer.Serialize(roles), null, null);
+
             return roles;
         }
 
         public async Task<RolDTO> getRolById(int id)
         {
             var rol = await _context.Rol.Where(r => r.IdRol == id && r.Activo == true).ProjectTo<RolDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Rol", TipoAccionEnum.Read, "Rol", JsonSerializer.Serialize(rol), null, null);
+
             return rol;
         }
 
@@ -50,6 +64,11 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.Rol.Add(data);
             await _context.SaveChangesAsync();
+
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Rol", TipoAccionEnum.Create, "Rol", data.IdRol.ToString(), null, JsonSerializer.Serialize(rol));
+
             return _mapper.Map<RolDTO>(data);
         }
 
@@ -61,6 +80,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 .FirstOrDefaultAsync(r => r.IdRol == rol.IdRol && r.Activo);
             if (data == null)
                 throw new Exception(RolErrors.RolNoEncontrado);
+
+            var valorAnterior = JsonSerializer.Serialize(data);
 
             var validarNombre = await _context.Rol
                 .AnyAsync(r => r.IdRol != rol.IdRol && r.Activo &&
@@ -74,6 +95,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             data.FechaModificacion = DateTime.Now;
 
             await _context.SaveChangesAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Rol", TipoAccionEnum.Create, "Rol", data.IdRol.ToString(), valorAnterior, JsonSerializer.Serialize(rol));
+
             return _mapper.Map<RolDTO>(data);
         }
 
@@ -98,6 +123,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             data.Activo = activo;
 
             await _context.SaveChangesAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Rol", TipoAccionEnum.Delete, "Rol", data.IdRol.ToString(), JsonSerializer.Serialize(true), JsonSerializer.Serialize(false));
+
             return true;
         }
 

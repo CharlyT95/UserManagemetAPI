@@ -11,6 +11,7 @@ using UserManagementAPI.Data;
 using UserManagementAPI.DTOs.Permiso;
 using UserManagementAPI.Helpers;
 using UserManagementAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
@@ -18,17 +19,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
     {
         private readonly UserManagementDbContext _context;
         private readonly IMapper _mapper;
-        private readonly AuditoriaClient _auditoria;
-        private readonly IHttpContextAccessor _httpContext;
-        private readonly JwtHelper _jwtHelper;
+        private readonly RegistroAuditoria _registroAuditoria;
 
-        public PermisoService(UserManagementDbContext context, IMapper mapper, AuditoriaClient auditoria, IHttpContextAccessor httpContext, JwtHelper jwtHelper)
+        public PermisoService(UserManagementDbContext context, IMapper mapper, RegistroAuditoria registroAuditoria)
         {
             _context = context;
             _mapper = mapper;
-            _auditoria = auditoria;
-            _httpContext = httpContext;
-            _jwtHelper = jwtHelper;
+            _registroAuditoria = registroAuditoria;
         }
 
         public async Task<PermisoDTO> CreatePermisoAsync(CreatePermisoDTO permiso)
@@ -45,17 +42,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _context.Permiso.Add(data);
             await _context.SaveChangesAsync();
 
-            _auditoria.Registrar(new AuditEvent
-            {
-                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
-                Modulo = "GestionUsuarios",
-                Servicio = "Permiso",
-                TipoAccion = TipoAccionEnum.Create,
-                Tabla = "Permiso",
-                IdRegistro = data.IdPermiso.ToString(),
-                ValorNuevo = JsonSerializer.Serialize(permiso),
-                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
-            });
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Permiso", TipoAccionEnum.Create, "Permiso", data.IdPermiso.ToString(), null, JsonSerializer.Serialize(permiso));
 
             return _mapper.Map<PermisoDTO>(data);
         }
@@ -63,12 +51,20 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         public async Task<List<PermisoDTO>> GetPermisos()
         {
             var permisos = await _context.Permiso.Where(permiso => permiso.Activo == true).OrderBy(p => p.IdPermiso).ProjectTo<PermisoDTO>(_mapper.ConfigurationProvider).ToListAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Permiso", TipoAccionEnum.Read, "Permiso", "Lista de permisos", null, null);
+
             return permisos;
         }
 
         public async Task<PermisoDTO> GetPermisoById(int id)
         {
             var permiso = await _context.Permiso.Where(p => p.IdPermiso == id && p.Activo == true).OrderBy(p => p.IdPermiso).ProjectTo<PermisoDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Permiso", TipoAccionEnum.Read, "Permiso", permiso.IdPermiso.ToString(), null, JsonSerializer.Serialize(permiso));
+
             return permiso;
         }
 
@@ -94,18 +90,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             _context.Permiso.Update(data);
             await _context.SaveChangesAsync();
 
-            _auditoria.Registrar(new AuditEvent
-            {
-                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
-                Modulo = "GestionUsuarios",
-                Servicio = "Permiso",
-                TipoAccion = TipoAccionEnum.Update,
-                Tabla = "Permiso",
-                IdRegistro = data.IdPermiso.ToString(),
-                ValorAnterior = JsonSerializer.Serialize(valorAnterior),
-                ValorNuevo = JsonSerializer.Serialize(permiso),
-                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
-            });
+            //Auditoria
+            _registroAuditoria.RegistrarAudit("Permiso", TipoAccionEnum.Update, "Permiso", data.IdPermiso.ToString(), valorAnterior, JsonSerializer.Serialize(permiso));
 
             return _mapper.Map<PermisoDTO>(data);
 
@@ -131,18 +117,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             //Auditoria
             data.Activo = activo;
 
-            _auditoria.Registrar(new AuditEvent
-            {
-                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
-                Modulo = "GestionUsuarios",
-                Servicio = "Permiso",
-                TipoAccion = TipoAccionEnum.Update,
-                Tabla = "Permiso",
-                IdRegistro = data.IdPermiso.ToString(),
-                ValorAnterior = JsonSerializer.Serialize(true),
-                ValorNuevo = JsonSerializer.Serialize(false),
-                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
-            });
+            _registroAuditoria.RegistrarAudit("Permiso", TipoAccionEnum.Delete, "Permiso", data.IdPermiso.ToString(), JsonSerializer.Serialize(true), JsonSerializer.Serialize(false));
 
             await _context.SaveChangesAsync();
             return true;

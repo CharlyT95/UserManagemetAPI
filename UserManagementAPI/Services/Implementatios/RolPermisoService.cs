@@ -1,11 +1,13 @@
-﻿using Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso;
+﻿using Aduanas.Aci.Usuarios.Api.Audit;
+using Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso;
 using Aduanas.Aci.Usuarios.Api.Errors.RolPermiso;
-using Aduanas.Aci.Usuarios.Api.Errors.UsuarioRol;
+using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using UserManagementAPI.Data;
-using UserManagementAPI.DTOs.Permiso;
 using UserManagementAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
@@ -13,11 +15,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
     {
         private readonly UserManagementDbContext _context;
         private readonly IMapper _mapper;
+        private readonly RegistroAuditoria _registroAuditoria;
 
-        public RolPermisoService(UserManagementDbContext context, IMapper mapper)
+        public RolPermisoService(UserManagementDbContext context, IMapper mapper, RegistroAuditoria registroAuditoria)
         {
             _context = context;
             _mapper = mapper;
+            _registroAuditoria = registroAuditoria;
         }
 
         public async Task<bool> AsignarRolPermiso(CreateRolPermisoDTO rolpermiso)
@@ -43,6 +47,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             _context.RolPermiso.Add(data);
             await _context.SaveChangesAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("RolPermiso", TipoAccionEnum.Create, "RolPermiso", data.IdRolPermiso.ToString(), null, JsonSerializer.Serialize(rolpermiso));
+
             return true;
 
         }
@@ -57,6 +65,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 
             var validarPermiso = await _context.Permiso
                 .AnyAsync(p => p.IdPermiso == rolpermiso.IdPermiso && p.Activo == true);
+
+            var valorAnterior = JsonSerializer.Serialize(validarPermiso);
 
             if (!validarPermiso)
                 throw new Exception(RolPermisoErrors.PermisoNoEncontrado);
@@ -74,6 +84,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             entity.FechaModificacion = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("RolPermiso", TipoAccionEnum.Update, "RolPermiso", entity.IdRolPermiso.ToString(), valorAnterior, JsonSerializer.Serialize(rolpermiso));
+
             return true;
         }
 
@@ -101,6 +115,9 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                     }
                 ).ToList();
 
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("RolPermiso", TipoAccionEnum.Read, "RolPermiso", JsonSerializer.Serialize(resultado), null, null);
+
             return resultado;
         }
 
@@ -125,6 +142,11 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             data.Activo = activo;
 
             await _context.SaveChangesAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("RolPermiso", TipoAccionEnum.Delete, "RolPermiso", data.IdRolPermiso.ToString(), JsonSerializer.Serialize(true), JsonSerializer.Serialize(false));
+
+
             return true;
         }
     }

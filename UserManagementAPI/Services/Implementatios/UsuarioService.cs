@@ -1,15 +1,17 @@
 ﻿using Aduanas.Aci.Usuarios.Api.Audit;
-using Aduanas.Aci.Usuarios.Api.Errors.Permiso;
+using Aduanas.Aci.Usuarios.Api.Helpers;
 using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
 using Aduanas.Aci.Usuarios.Api.Extensions;
 using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System.Text.Json;
 using UserManagementAPI.Data;
 using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
@@ -17,17 +19,13 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
     {
         private readonly UserManagementDbContext _context;
         private readonly IMapper _mapper;
-        private readonly AuditoriaClient _auditoria;    
-        private readonly IHttpContextAccessor _httpContext;
-        private readonly JwtHelper _jwtHelper;
+        private readonly RegistroAuditoria _registroAuditoria;
 
-        public UsuarioService(UserManagementDbContext context, IMapper mapper, AuditoriaClient auditoria, IHttpContextAccessor httpContext, JwtHelper jwtHelper)
+        public UsuarioService(UserManagementDbContext context, IMapper mapper, RegistroAuditoria registroAuditoria)
         {
             _context = context;
             _mapper = mapper;
-            _auditoria = auditoria;
-            _httpContext = httpContext;
-            _jwtHelper = jwtHelper;
+            _registroAuditoria = registroAuditoria;
         }
 
         public async Task<UsuarioDTO> CreateUserAsync(CreateUsuarioDTO usuario)
@@ -47,17 +45,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             await _context.SaveChangesAsync();
 
             //Auditoría
-            _auditoria.Registrar(new AuditEvent
-            {
-                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
-                Modulo = "GestionUsuarios",
-                Servicio = "Usuario",
-                TipoAccion = TipoAccionEnum.Create,
-                Tabla = "Usuario",
-                IdRegistro = data.IdUsuario.ToString(),
-                ValorNuevo = JsonSerializer.Serialize(usuario),
-                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
-            });
+            _registroAuditoria.RegistrarAudit("Uuario", TipoAccionEnum.Create, "Usuario", data.IdUsuario.ToString(), null, JsonSerializer.Serialize(usuario));
 
             return _mapper.Map<UsuarioDTO>(data);
         }
@@ -65,6 +53,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
         public async Task<List<UsuarioDTO>> GetUsuariosAsync()
         {
             var ListaUsuarios = await _context.Usuario.Where(usuario => usuario.Activo).OrderBy(usuario => usuario.IdUsuario).ProjectTo<UsuarioDTO>(_mapper.ConfigurationProvider).ToListAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Uuario", TipoAccionEnum.Read, "Usuario", "Lista de usuarios", null, null);
+
             return ListaUsuarios;
         }
 
@@ -75,6 +67,10 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
                 throw new Exception(UsuarioErrors.UsuarioInactivoBoolInactivo);
 
             var usuario = await _context.Usuario.Where(usuario => usuario.IdUsuario == id).ProjectTo<UsuarioDTO>(_mapper.ConfigurationProvider).FirstOrDefaultAsync();
+
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Uuario", TipoAccionEnum.Read, "Usuario", usuario.IdUsuario.ToString(), null, null);
+
             return usuario;
         }
 
@@ -116,18 +112,7 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             await _context.SaveChangesAsync();
 
             //Auditoría
-            _auditoria.Registrar(new AuditEvent
-            {
-                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
-                Modulo = "GestionUsuarios",
-                Servicio = "Usuario",
-                TipoAccion = TipoAccionEnum.Update,
-                Tabla = "Usuario",
-                IdRegistro = data.IdUsuario.ToString(),
-                ValorAnterior = JsonSerializer.Serialize(valorAnterior),
-                ValorNuevo = JsonSerializer.Serialize(usuario),
-                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
-            });
+            _registroAuditoria.RegistrarAudit("Uuario", TipoAccionEnum.Update, "Usuario", data.IdUsuario.ToString(), valorAnterior, JsonSerializer.Serialize(usuario));
 
             return _mapper.Map<UsuarioDTO>(data);
         }
@@ -152,18 +137,8 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             //Auditoria
             data.Activo = activo;
 
-            _auditoria.Registrar(new AuditEvent
-            {
-                IdUsuario = _jwtHelper.ObtenerUsuarioId(),
-                Modulo = "GestionUsuarios",
-                Servicio = "Usuario",
-                TipoAccion = TipoAccionEnum.Update,
-                Tabla = "Usuario",
-                IdRegistro = data.IdUsuario.ToString(),
-                ValorAnterior = JsonSerializer.Serialize(true),
-                ValorNuevo = JsonSerializer.Serialize(false),
-                DireccionIP = _httpContext.HttpContext?.Connection.RemoteIpAddress?.ToString()
-            });
+            //Auditoría
+            _registroAuditoria.RegistrarAudit("Uuario", TipoAccionEnum.Delete, "Usuario", data.IdUsuario.ToString(), JsonSerializer.Serialize(true), JsonSerializer.Serialize(false));
 
             await _context.SaveChangesAsync();
             return true;

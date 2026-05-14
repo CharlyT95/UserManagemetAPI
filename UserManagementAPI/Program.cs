@@ -52,6 +52,7 @@ builder.Services.AddScoped<RolPermisoService>();
 builder.Services.AddScoped<UsuarioCredencialService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<JwtHelper>();
+builder.Services.AddScoped<RegistroAuditoria>();
 
 
 

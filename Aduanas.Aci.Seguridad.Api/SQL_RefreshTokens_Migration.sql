@@ -1,14 +1,14 @@
 
 BEGIN
     CREATE TABLE [dbo].[RefreshToken] (
-        [TokenId]                   INT            IDENTITY(1,1) NOT NULL,
-        [IdUsuario]                 INT            NOT NULL,
-        [TokenHash]                 varchar(500)   NULL,
-        [TokenHashReemplazo]        varchar(500)   NULL ,
-        [FechaCreado]               DATETIME2      NOT NULL DEFAULT GETDATE(),
-        [Expira]                    DATETIME2      NULL,
-        [Revocado]                  BIT            NULL,
-        [FechaRevocado]             DATETIME2      NULL,
+        [TokenId]                   INT             IDENTITY(1,1) NOT NULL,
+        [IdUsuario]                 INT             NOT NULL,
+        [TokenHash]                 varchar(1000)   NULL,
+        [TokenHashReemplazo]        varchar(500)    NULL ,
+        [FechaCreado]               DATETIME2       NOT NULL DEFAULT GETDATE(),
+        [Expira]                    DATETIME2       NULL,
+        [Revocado]                  BIT             NULL,
+        [FechaRevocado]             DATETIME2       NULL,
 
         CONSTRAINT [FK_RefreshToken_Usuarios]
             FOREIGN KEY ([IdUsuario]) 
