@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Aduanas.Aci.Audit.Api.props" />
-</Project>

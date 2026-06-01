@@ -104,90 +104,90 @@ namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
             return _mapper.Map<DesbloqueoUsuarioDTO>(data);
         }
 
-        public async Task<LoginResponseDTO> Login(LoginDTO login)
-        {
-            var validaractivo = await _context.Usuario
-                .AnyAsync(u => u.UsuarioLogin == login.UsuarioLogin && u.Activo == false);
+        //public async Task<LoginResponseDTO> Login(LoginDTO login)
+        //{
+        //    var validaractivo = await _context.Usuario
+        //        .AnyAsync(u => u.UsuarioLogin == login.UsuarioLogin && u.Activo == false);
 
-            if (validaractivo)
-                throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
+        //    if (validaractivo)
+        //        throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
 
-            var usuarioData = await (
-                from u in _context.Usuario
-                join c in _context.UsuarioCredencial
-                    on u.IdUsuario equals c.IdUsuario
-                where u.UsuarioLogin == login.UsuarioLogin && u.Activo
-                select new
-                {
-                    Usuario = u,
-                    Credencial = c
-                }
-            ).FirstOrDefaultAsync();
+        //    var usuarioData = await (
+        //        from u in _context.Usuario
+        //        join c in _context.UsuarioCredencial
+        //            on u.IdUsuario equals c.IdUsuario
+        //        where u.UsuarioLogin == login.UsuarioLogin && u.Activo
+        //        select new
+        //        {
+        //            Usuario = u,
+        //            Credencial = c
+        //        }
+        //    ).FirstOrDefaultAsync();
 
-            if (usuarioData == null)
-                throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
+        //    if (usuarioData == null)
+        //        throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
 
-            var usuario = usuarioData.Usuario;
-            var credencial = usuarioData.Credencial;
+        //    var usuario = usuarioData.Usuario;
+        //    var credencial = usuarioData.Credencial;
 
-            if (credencial.BloqueoTemporal)
-                throw new Exception(UsuarioCredencialErrors.Bloqueo);
+        //    if (credencial.BloqueoTemporal)
+        //        throw new Exception(UsuarioCredencialErrors.Bloqueo);
 
-            var loginValido = _passwordService.VerifyPassword(
-                login.Password,
-                credencial.PasswordHash,
-                credencial.PasswordSalt
-            );
+        //    var loginValido = _passwordService.VerifyPassword(
+        //        login.Password,
+        //        credencial.PasswordHash,
+        //        credencial.PasswordSalt
+        //    );
 
-            if (!loginValido)
-            {
-                credencial.IntentosFallidos++;
+        //    if (!loginValido)
+        //    {
+        //        credencial.IntentosFallidos++;
 
-                if (credencial.IntentosFallidos > 5)
-                {
-                    credencial.BloqueoTemporal = true;
-                    await _context.SaveChangesAsync();
-                    throw new Exception(UsuarioCredencialErrors.BloqueoAutomatico);
-                }
+        //        if (credencial.IntentosFallidos > 5)
+        //        {
+        //            credencial.BloqueoTemporal = true;
+        //            await _context.SaveChangesAsync();
+        //            throw new Exception(UsuarioCredencialErrors.BloqueoAutomatico);
+        //        }
 
-                await _context.SaveChangesAsync();
-                throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
-            }
+        //        await _context.SaveChangesAsync();
+        //        throw new Exception(UsuarioCredencialErrors.CredencialesIncorrectas);
+        //    }
 
-            if (credencial.IntentosFallidos > 0)
-            {
-                credencial.IntentosFallidos = 0;
-                await _context.SaveChangesAsync();
-            }
+        //    if (credencial.IntentosFallidos > 0)
+        //    {
+        //        credencial.IntentosFallidos = 0;
+        //        await _context.SaveChangesAsync();
+        //    }
 
-            var roles = await _context.UsuarioRol
-                .Where(ur => ur.IdUsuario == usuario.IdUsuario && ur.Activo && ur.Rol.Activo)
-                .Select(ur => new LoginResponseRolesDTO
-                {
-                    IdRol = ur.IdRol,
-                    Nombre = ur.Rol.Nombre,
+        //    var roles = await _context.UsuarioRol
+        //        .Where(ur => ur.IdUsuario == usuario.IdUsuario && ur.Activo && ur.Rol.Activo)
+        //        .Select(ur => new LoginResponseRolesDTO
+        //        {
+        //            IdRol = ur.IdRol,
+        //            Nombre = ur.Rol.Nombre,
 
-                    Permisos = _context.RolPermiso
-                        .Where(rp => rp.IdRol == ur.IdRol && rp.Activo && rp.Rol.Activo && rp.Permiso.Activo)
-                        .Select(rp => new PermisoDTO
-                        {
-                            IdPermiso = rp.IdPermiso,
-                            CodigoPermiso = rp.Permiso.CodigoPermiso,
-                            Descripcion = rp.Permiso.Descripcion,
-                            Modulo = rp.Permiso.Modulo,
-                            Accion = rp.Permiso.Accion,
-                            Referencia = rp.Permiso.Referencia
-                        }).ToList()
-                })
-                .ToListAsync();
+        //            Permisos = _context.RolPermiso
+        //                .Where(rp => rp.IdRol == ur.IdRol && rp.Activo && rp.Rol.Activo && rp.Permiso.Activo)
+        //                .Select(rp => new PermisoDTO
+        //                {
+        //                    IdPermiso = rp.IdPermiso,
+        //                    CodigoPermiso = rp.Permiso.CodigoPermiso,
+        //                    Descripcion = rp.Permiso.Descripcion,
+        //                    Modulo = rp.Permiso.Modulo,
+        //                    Accion = rp.Permiso.Accion,
+        //                    Referencia = rp.Permiso.Referencia
+        //                }).ToList()
+        //        })
+        //        .ToListAsync();
 
-            return new LoginResponseDTO
-            {
-                Nombres = usuario.Nombres,
-                Apellidos = usuario.Apellidos,
-                UsuarioLogin = usuario.UsuarioLogin,
-                Roles = roles
-            };
-        }
+        //    return new LoginResponseDTO
+        //    {
+        //        Nombres = usuario.Nombres,
+        //        Apellidos = usuario.Apellidos,
+        //        UsuarioLogin = usuario.UsuarioLogin,
+        //        Roles = roles
+        //    };
+        //}
     }
 }

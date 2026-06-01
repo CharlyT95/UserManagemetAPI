@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aduanas.Aci.Audit.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c80338cb26e3a120b8dea16ed679afd6f0569e21")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92720b357145ba8ebe43663356433a100f1ecb63")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aduanas.Aci.Audit.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aduanas.Aci.Audit.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

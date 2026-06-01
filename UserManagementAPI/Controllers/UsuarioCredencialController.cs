@@ -33,11 +33,11 @@ namespace Aduanas.Aci.Usuarios.Api.Controllers
             return Ok(ResponseHelper.Success(data));
         }
 
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] LoginDTO login)
-        {
-            var data = await _usuarioCredencialService.Login(login);
-            return Ok(ResponseHelper.Success(data));
-        }
+        //[HttpPost("Login")]
+        //public async Task<IActionResult> Login([FromBody] LoginDTO login)
+        //{
+        //    var data = await _usuarioCredencialService.Login(login);
+        //    return Ok(ResponseHelper.Success(data));
+        //}
     }
 }

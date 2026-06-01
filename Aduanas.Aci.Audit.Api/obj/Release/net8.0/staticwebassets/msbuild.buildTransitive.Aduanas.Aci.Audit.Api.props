@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Aduanas.Aci.Audit.Api.props" />
-</Project>

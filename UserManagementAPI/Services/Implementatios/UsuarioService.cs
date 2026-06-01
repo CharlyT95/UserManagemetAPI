@@ -1,17 +1,13 @@
-﻿using Aduanas.Aci.Usuarios.Api.Audit;
-using Aduanas.Aci.Usuarios.Api.Helpers;
-using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
+﻿using Aduanas.Aci.Usuarios.Api.Errors.Usuario;
 using Aduanas.Aci.Usuarios.Api.Extensions;
 using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
 using System.Text.Json;
 using UserManagementAPI.Data;
 using UserManagementAPI.DTOs.Usuario;
 using UserManagementAPI.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {

@@ -1,5 +1,4 @@
-﻿using Aduanas.Aci.Usuarios.Api.Audit;
-using Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso;
+﻿using Aduanas.Aci.Usuarios.Api.DTOs.RolPermiso;
 using Aduanas.Aci.Usuarios.Api.Errors.RolPermiso;
 using Aduanas.Aci.Usuarios.Api.Helpers;
 using AutoMapper;
@@ -7,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using UserManagementAPI.Data;
 using UserManagementAPI.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Aduanas.Aci.Usuarios.Api.Services.Implementatios
 {
