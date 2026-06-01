@@ -5,6 +5,8 @@ using Aduanas.Aci.Seguridad.Api.DTOs.Rol;
 using Aduanas.Aci.Seguridad.Api.DTOs.Usuario;
 using Aduanas.Aci.Seguridad.Api.Helpers;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Aduanas.Aci.Seguridad.Api.Services;
 
@@ -126,9 +128,10 @@ public class AuthService : IAuthService
         var storedToken = await _tokenService.GetValidRefreshTokenAsync(request.RefreshToken);
         if (storedToken is null)
             return null;
-
-        // 🔒 3. Validación extra (RECOMENDADO)
-        var userIdFromToken = principal.FindFirst("sub")?.Value;
+        // 3.Vaildar usurio
+        var userIdFromToken =
+            principal.FindFirst(ClaimTypes.NameIdentifier)?.Value
+            ?? principal.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
 
         if (userIdFromToken is null ||
             userIdFromToken != storedToken.IdUsuario.ToString())

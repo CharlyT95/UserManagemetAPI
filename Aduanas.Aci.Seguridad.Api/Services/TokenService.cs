@@ -37,12 +37,15 @@ public class TokenService : ITokenService
     }
 
     public async Task<RefreshToken?> GetValidRefreshTokenAsync(string token)
-        => await _db.RefreshToken
+    {
+        return await _db.RefreshToken
             .AsNoTracking()
             .FirstOrDefaultAsync(r =>
-                r.TokenHash == token &&        
-                !r.Revocado &&           
-                r.Expira > DateTime.Now); 
+                r.TokenHashReemplazo == token &&
+                !r.Revocado &&
+                r.Expira > DateTime.Now);
+    }
+
 
     public async Task RevokeRefreshTokenAsync(string token)
     {

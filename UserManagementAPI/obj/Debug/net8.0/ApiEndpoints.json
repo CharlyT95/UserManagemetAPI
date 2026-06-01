@@ -17,22 +17,6 @@
   },
   {
     "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioCredencialController",
-    "Method": "Login",
-    "RelativePath": "api/Login",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "login",
-        "Type": "Aduanas.Aci.Usuarios.Api.DTOs.UsuarioCredencial.LoginDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Aduanas.Aci.Usuarios.Api.Controllers.UsuarioCredencialController",
     "Method": "CambioPassword",
     "RelativePath": "api/NuevaContrasenia",
     "HttpMethod": "POST",

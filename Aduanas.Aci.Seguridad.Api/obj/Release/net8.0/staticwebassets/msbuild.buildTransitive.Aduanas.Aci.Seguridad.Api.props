@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Aduanas.Aci.Seguridad.Api.props" />
+</Project>
