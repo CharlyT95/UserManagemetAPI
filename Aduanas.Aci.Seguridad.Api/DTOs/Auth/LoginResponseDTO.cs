@@ -4,9 +4,9 @@ namespace Aduanas.Aci.Seguridad.Api.DTOs.Auth;
 
 public class LoginResponseDTO
 {
-    public string AccessToken { get; set; } = string.Empty;
-    public string RefreshToken { get; set; } = string.Empty;
-    public DateTime AccessTokenExpiration { get; set; }
-    public DateTime RefreshTokenExpiration { get; set; }
+    public string Token { get; set; } = string.Empty;
+    public string TokenActualizacion { get; set; } = string.Empty;
+    public DateTime TokenExpiracion { get; set; }
+    public DateTime TokenActualizacionExpiracion { get; set; }
     public UsuarioDTO Usuario { get; set; } = new();
 }

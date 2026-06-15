@@ -9,5 +9,5 @@ public class LoginRequestDTO
 
     [Required(ErrorMessage = "La contraseña es requerida")]
     //[MinLength(6, ErrorMessage = "Mínimo 6 caracteres")]
-    public string Password { get; set; } = string.Empty;
+    public string Contrasenia { get; set; } = string.Empty;
 }

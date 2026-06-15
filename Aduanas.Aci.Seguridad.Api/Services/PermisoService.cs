@@ -9,11 +9,11 @@ public interface IPermissionService
     Task<List<string>> ObtenerPermisosAsync(int idUsuario);
 }
 
-public class PermissionService : IPermissionService
+public class PermisoService : IPermissionService
 {
     private readonly AppDbContext _db;
 
-    public PermissionService(AppDbContext db) => _db = db;
+    public PermisoService(AppDbContext db) => _db = db;
 
     public async Task<List<string>> ObtenerPermisosAsync(int idUsuario)
     {

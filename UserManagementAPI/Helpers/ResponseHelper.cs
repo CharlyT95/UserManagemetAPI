@@ -8,9 +8,9 @@ namespace UserManagementAPI.Helpers
         {
             return new ApiResponse<T>
             {
-                Success = true,
-                Data = data,
-                Message = message
+                Resultado = true,
+                Datos = data,
+                Mensaje = message
             };
         }
 
@@ -18,9 +18,9 @@ namespace UserManagementAPI.Helpers
         {
             return new ApiResponse<T>
             {
-                Success = false,
-                Data = default,
-                Message = message
+                Resultado = false,
+                Datos = default,
+                Mensaje = message
             };
         }
     }

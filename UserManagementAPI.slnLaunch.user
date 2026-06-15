@@ -8,11 +8,13 @@
       },
       {
         "Name": "Aduanas.Aci.Audit.Api\\Aduanas.Aci.Audit.Api.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": ""
       },
       {
         "Name": "Aduanas.Aci.Seguridad.Api\\Aduanas.Aci.Seguridad.Api.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": ""
       }
     ]
   }

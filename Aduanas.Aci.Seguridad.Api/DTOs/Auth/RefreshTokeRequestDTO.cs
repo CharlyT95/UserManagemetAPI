@@ -5,8 +5,8 @@ namespace Aduanas.Aci.Seguridad.Api.DTOs.Auth;
 public class RefreshTokenRequestDTO
 {
     [Required(ErrorMessage = "El AccessToken es requerido")]
-    public string AccessToken { get; set; } = string.Empty;
+    public string Token { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "El RefreshToken es requerido")]
-    public string RefreshToken { get; set; } = string.Empty;
+    public string TokenActualizacion { get; set; } = string.Empty;
 }

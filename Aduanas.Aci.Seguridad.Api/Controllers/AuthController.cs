@@ -29,7 +29,7 @@ public class AuthController : ControllerBase
         var result = await _authService.LoginAsync(request, ip);
 
         if (result is null)
-            return Unauthorized(new { message = "Credenciales inválidas o cuenta bloqueada" });
+            return Unauthorized(new { mensaje = "Credenciales inválidas o cuenta bloqueada" });
 
         return Ok(result);
     }
@@ -45,7 +45,7 @@ public class AuthController : ControllerBase
         var result = await _authService.RefreshTokenAsync(request);
 
         if (result is null)
-            return Unauthorized(new { message = "Token inválido o expirado" });
+            return Unauthorized(new { mensaje = "Token inválido o expirado" });
 
         return Ok(result);
     }
@@ -56,7 +56,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Logout([FromBody] string refreshToken)
     {
         await _authService.LogoutAsync(refreshToken);
-        return Ok(new { message = "Sesión cerrada correctamente" });
+        return Ok(new { mensaje = "Sesión cerrada correctamente" });
     }
 
     /// <summary>Obtener información del usuario autenticado desde el token</summary>

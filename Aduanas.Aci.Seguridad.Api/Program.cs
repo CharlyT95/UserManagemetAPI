@@ -20,7 +20,8 @@ builder.Services.AddSingleton<JwtHelper>();
 // ── Servicios ─────────────────────────────────────────────────────────────────
 builder.Services.AddScoped<IAuthService,       AuthService>();
 builder.Services.AddScoped<ITokenService,      TokenService>();
-builder.Services.AddScoped<IPermissionService, PermissionService>();
+builder.Services.AddScoped<IPermissionService, PermisoService>();
+builder.Services.AddScoped<IParametroService, ParametroService>();
 
 // ── JWT Authentication ────────────────────────────────────────────────────────
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");

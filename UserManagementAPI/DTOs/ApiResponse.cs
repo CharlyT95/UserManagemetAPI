@@ -2,9 +2,9 @@
 {
     public class ApiResponse<T>
     {
-        public bool Success { get; set; }
-        public T Data { get; set; }
-        public string Message { get; set; }
+        public bool Resultado { get; set; }
+        public T Datos { get; set; }
+        public string Mensaje { get; set; }
 
     }
 }

@@ -14,6 +14,7 @@ public class AppDbContext : DbContext
     public DbSet<Permiso>            Permiso            => Set<Permiso>();
     public DbSet<RolPermiso>         RolPermiso         => Set<RolPermiso>();
     public DbSet<RefreshToken>       RefreshToken       => Set<RefreshToken>();
+    public DbSet<Parametro>         Parametro           => Set<Parametro>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -72,5 +73,17 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<RefreshToken>()
             .HasIndex(rt => rt.TokenHash)
             .IsUnique();
+
+        modelBuilder.Entity<Parametro>(entity =>
+        {
+            entity.ToTable("Parametro");
+            entity.HasKey(p => p.IdParametro);
+            entity.Property(p => p.CodigoParametro).HasMaxLength(25).IsRequired();
+            entity.Property(p => p.Valor).HasMaxLength(150).IsRequired();
+            entity.Property(p => p.Descripcion).HasMaxLength(250);
+            entity.Property(p => p.UsuarioCreacion).HasMaxLength(50).IsRequired();
+            entity.Property(p => p.UsuarioModificacion).HasMaxLength(50);
+            entity.Property(p => p.Activo).HasDefaultValue(true);
+        });
     }
 }

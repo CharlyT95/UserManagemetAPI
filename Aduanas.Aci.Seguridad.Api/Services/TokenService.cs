@@ -50,12 +50,11 @@ public class TokenService : ITokenService
     public async Task RevokeRefreshTokenAsync(string token)
     {
         var rt = await _db.RefreshToken
-            .FirstOrDefaultAsync(r => r.TokenHash == token);
-
+            .FirstOrDefaultAsync(r => r.TokenHashReemplazo == token);
         if (rt is not null)
         {
-            rt.Revocado = true;            
-            rt.FechaRevocado = DateTime.UtcNow; 
+            rt.Revocado = true;
+            rt.FechaRevocado = DateTime.UtcNow;
             await _db.SaveChangesAsync();
         }
     }

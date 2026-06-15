@@ -52,9 +52,9 @@ namespace UserManagementAPI.Middlewares
 
             var response = new ApiResponse<object>
             {
-                Success = false,
-                Data = null,
-                Message = message
+                Resultado = false,
+                Datos = null,
+                Mensaje = message
             };
 
             await context.Response.WriteAsJsonAsync(response);
@@ -66,9 +66,9 @@ namespace UserManagementAPI.Middlewares
 
             var response = new ApiResponse<object>
             {
-                Success = false,
-                Data = null,
-                Message = ex.Message
+                Resultado = false,
+                Datos = null,
+                Mensaje = ex.Message
             };
 
             await context.Response.WriteAsJsonAsync(response);
