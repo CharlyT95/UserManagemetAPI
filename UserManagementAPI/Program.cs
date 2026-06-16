@@ -1,9 +1,9 @@
 using Aduanas.Aci.Usuarios.Api.Services.Implementatios;
 using Aduanas.Aci.Usuarios.Api.Services.Interfaces;
-using Aduanas.Aci.Usuarios.Api.Audit; 
+using Aduanas.Aci.Usuarios.Api.Audit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Channels;      
+using System.Threading.Channels;
 using UserManagementAPI.Data;
 using UserManagementAPI.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -33,6 +33,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirAngular", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") // Permite tu Angular local
+               .AllowAnyMethod()                     // Permite GET, POST, PUT, DELETE
+               .AllowAnyHeader();                    // Permite cualquier tipo de header
+    });
+});
 
 
 builder.Services.AddControllers();
@@ -106,7 +116,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionMiddleware>();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors("PermitirAngular");
 app.MapControllers();
 app.Run();

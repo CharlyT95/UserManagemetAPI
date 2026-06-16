@@ -6,28 +6,28 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGxAYAhp3CUqpCEmKMzYSVwAAAAACAAAAAAAQZgAAAAEAACAAAACW3hkuIIlZzmUuthpto7HW9Y88luQ2E5UPct8PzSC9VQAAAAAOgAAAAAIAACAAAAAvnPP/6hmEx6ejvUDhONrYIJSr7Zn7wXoltINbGXlx/SAAAABWz8CJkzJrPlbR9gUT7Z7LCZYIs3pe2rVYwIu78PB1DEAAAADM9+h8YJN5VsEIWWg4b8Lz3CRYBavE14cf3jQjGRZTuK5pfuL/f9lJsri1sDvqXnR/YlQtEzMTzXitF2csVYDA</EncryptedPassword>
-    <_PublishTargetUrl>ftp://win8122.site4now.net/site1</_PublishTargetUrl>
-    <History>True|2026-05-25T05:21:05.0304756Z;True|2026-05-24T22:53:33.2504899-06:00;False|2026-05-24T22:49:13.9171282-06:00;False|2026-05-24T22:31:32.4184556-06:00;</History>
+    <_PublishTargetUrl>ftp://win8122.site4now.net/usuarios</_PublishTargetUrl>
+    <History>True|2026-06-16T02:06:41.5345847Z;True|2026-05-24T23:21:05.0304756-06:00;True|2026-05-24T22:53:33.2504899-06:00;False|2026-05-24T22:49:13.9171282-06:00;False|2026-05-24T22:31:32.4184556-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="Aduanas.Aci.Usuarios.Api.deps.json">
-      <publishTime>05/24/2026 23:17:16</publishTime>
+      <publishTime>06/15/2026 20:00:49</publishTime>
     </File>
     <File Include="Aduanas.Aci.Usuarios.Api.dll">
-      <publishTime>05/24/2026 23:17:16</publishTime>
+      <publishTime>06/15/2026 20:01:44</publishTime>
     </File>
     <File Include="Aduanas.Aci.Usuarios.Api.exe">
-      <publishTime>05/24/2026 23:17:16</publishTime>
+      <publishTime>06/15/2026 20:01:44</publishTime>
     </File>
     <File Include="Aduanas.Aci.Usuarios.Api.pdb">
-      <publishTime>05/24/2026 23:17:16</publishTime>
+      <publishTime>06/15/2026 20:01:44</publishTime>
     </File>
     <File Include="Aduanas.Aci.Usuarios.Api.runtimeconfig.json">
-      <publishTime>05/24/2026 22:48:09</publishTime>
+      <publishTime>06/15/2026 20:00:49</publishTime>
     </File>
     <File Include="appsettings.Development.json">
-      <publishTime>05/05/2026 19:42:28</publishTime>
+      <publishTime>06/13/2026 19:50:34</publishTime>
     </File>
     <File Include="appsettings.json">
       <publishTime>05/14/2026 22:33:00</publishTime>
@@ -342,7 +342,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/09/2023 13:44:50</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>05/24/2026 23:17:22</publishTime>
+      <publishTime>06/15/2026 20:01:44</publishTime>
     </File>
     <File Include="zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>02/09/2023 13:54:34</publishTime>
